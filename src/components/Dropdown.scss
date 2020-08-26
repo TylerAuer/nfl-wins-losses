@@ -1,0 +1,18 @@
+.dropdown {
+  &__list {
+    &-div {
+      position: fixed;
+      right: 7rem;
+      top: 5rem;
+    }
+
+    &-ul {
+      text-align: right;
+      list-style: none;
+    }
+
+    &-item {
+      margin-top: 1rem;
+    }
+  }
+}

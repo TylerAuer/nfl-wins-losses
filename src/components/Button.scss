@@ -1,0 +1,28 @@
+.button {
+  padding: 1rem 3rem;
+  font-family: inherit;
+  font-size: 1.6rem;
+  border-radius: 5px;
+  border: 2px solid black;
+  background: none;
+  box-shadow: none;
+  outline: none;
+  transition: all 0.2s;
+
+  &:hover,
+  &:focus {
+    color: white;
+    background: black;
+  }
+
+  &--close {
+    font-size: 3rem;
+    border: none;
+
+    &:hover,
+    &:focus {
+      color: magenta;
+      background: none;
+    }
+  }
+}
