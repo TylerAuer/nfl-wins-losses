@@ -21,10 +21,10 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "react-scripts start",
     "spin:server-watch": "tsc -w -p tsconfig.server.json",
-    "spin:server-start": "nodemon server/index.js",
+    "spin:server-start": "nodemon dist/index.js",
     "spin": "run-p spin:*",
+    "start": "react-scripts start",
     "build:empty": "rm -rf dist",
     "build:client": "react-scripts build",
     "build:move-client": "mkdir dist && mv build dist/client",
