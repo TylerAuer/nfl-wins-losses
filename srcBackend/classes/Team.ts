@@ -1,6 +1,6 @@
 import { Conference, Division } from '../enums';
 
-interface TeamProps {
+export interface TeamProps {
   espnId: number; // start at 1 and goes through 34 or something like that
   espnUid: string;
   espnLink: string;
@@ -22,7 +22,7 @@ export class Team {
   losses: number = 0;
   ties: number = 0;
 
-  constructor(public apiInfo: TeamProps) {}
+  constructor(public desc: TeamProps) {}
 
   // Team's current record in '10 - 6' format or or '10 - 6 - 1' format if a
   // team has had a tie.

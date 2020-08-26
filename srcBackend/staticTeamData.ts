@@ -2,13 +2,13 @@ import { Conference, Division } from './enums';
 
 // Data in this file is hard-coded because it wasn't available from an API
 
-interface TeamHardCodedData {
+interface StaticTeamData {
   conference: Conference;
   division: Division;
   byeWeek: number;
 }
 
-export const teams: { [key: string]: TeamHardCodedData } = {
+export const staticTeamData: { [key: string]: StaticTeamData } = {
   //
   // NFC
   //

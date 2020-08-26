@@ -2,12 +2,25 @@ import express, { Request, Response } from 'express';
 import sendStandings from './routes/standings';
 import sendScoreboard from './routes/scoreboard';
 import sendBump from './routes/bump';
+import { buildTeams } from './onStart/buildTeams';
 
 ////////////////////////////////////////////////////////////////////////////////
 //   CONFIGURE APP   ///////////////////////////////////////////////////////////
 
 const app = express();
 const port = process.env.PORT || 4000;
+
+////////////////////////////////////////////////////////////////////////////////
+//   GENERATE INITIAL DATA   ///////////////////////////////////////////////////
+//
+// Initializes initial data state which is then updated on subsequent API
+// calls to monitor live games, league standings, and bump chart data
+//
+const initializeData = (): void => {
+  buildTeams().then((data) => (app.locals.teams = data));
+};
+
+initializeData();
 
 ////////////////////////////////////////////////////////////////////////////////
 //   SERVE CLIENT APP   ////////////////////////////////////////////////////////
