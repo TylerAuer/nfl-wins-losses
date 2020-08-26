@@ -1,4 +1,11 @@
 import express, { Request, Response } from 'express';
+import sendStandings from './routes/standings';
+import sendScoreboard from './routes/scoreboard';
+import sendBump from './routes/bump';
+
+////////////////////////////////////////////////////////////////////////////////
+//   CONFIGURE APP   ///////////////////////////////////////////////////////////
+
 const app = express();
 const port = process.env.PORT || 4000;
 
@@ -14,20 +21,13 @@ app.get('/', (req: Request, res: Response): void => {
 ////////////////////////////////////////////////////////////////////////////////
 //   BACKEND ROUTES   //////////////////////////////////////////////////////////
 
-app.get('/standings', (req: Request, res: Response): void => {
-  res.send('JSON for league standings');
-});
-app.get('/scoreboard', (req: Request, res: Response): void => {
-  res.send('JSON for live NFL scoreboard');
-});
-app.get('/bump', (req: Request, res: Response): void => {
-  res.send('Data for bump chart');
-});
+app.get('/standings', sendStandings);
+app.get('/scoreboard', sendScoreboard);
+app.get('/bump', sendBump);
 
 ////////////////////////////////////////////////////////////////////////////////
 //   START SERVER   ////////////////////////////////////////////////////////////
+
 app.listen(port, () => {
   console.log(`Spinning up app on port: ${port}`);
 });
-
-console.log('Hi, Earth!');
