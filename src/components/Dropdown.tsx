@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function Dropdown({ category, list }: Props) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState(null);
 
   const toggleMenu = () => {
@@ -16,7 +16,7 @@ export default function Dropdown({ category, list }: Props) {
   };
 
   const closed = (
-    <Button key={1} onClick={toggleMenu} text={active || 'Owner'} />
+    <Button key={1} onClick={toggleMenu} text={active || category} />
   );
 
   const open = (
