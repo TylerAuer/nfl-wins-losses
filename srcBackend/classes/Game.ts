@@ -1,38 +1,31 @@
 import { Team } from './Team';
 
-enum Status {
-  pregame = 'pregame',
-  live = 'live',
-  halftime = 'halftime',
-  postgame = 'postgame',
-}
+export interface GameProps {
+  id: string;
+  date: Date;
 
-enum Possession {
-  home = 'home',
-  away = 'away',
-}
-
-interface GameProps {
-  status: Status;
+  state: string;
+  isFinished: boolean;
 
   home: Team;
   away: Team;
 
-  homeScore: number;
-  awayScore: number;
+  homeScore: string;
+  awayScore: string;
 
   line: string;
   total: number;
 
-  possession: Possession;
-  down: number;
-  distance: number;
-  quarter: string;
-  timeLeft: string;
+  // TODO: Not sure if the API provides this information for live games
+  //possession: Possession;
+  // down: number;
+  // distance: number;
+
+  quarter: number;
+  clock: string;
 
   stadium: string;
-  network: string;
-  dateTime: Date;
+  tvNetwork: string;
 }
 
 export class Game {

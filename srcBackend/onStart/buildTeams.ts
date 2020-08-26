@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Team } from '../classes/Team';
 import { staticTeamData } from '../staticTeamData';
 
-interface EspnApiResponse {
+interface EspnTeamsApiResponse {
   team: {
     id: string;
     uid: string;
@@ -27,7 +27,7 @@ export async function buildTeams(): Promise<{ [key: string]: Team }> {
   const espnData = espnResponse.data.sports[0].leagues[0].teams;
 
   const teams: { [key: string]: Team } = {};
-  espnData.forEach((team: EspnApiResponse) => {
+  espnData.forEach((team: EspnTeamsApiResponse) => {
     const t = team.team;
     const abbr = t.abbreviation;
 
