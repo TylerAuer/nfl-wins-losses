@@ -6,12 +6,12 @@ A site to track an NFL league with family and friends.
 
 Before the season, everyone drafts teams for either their wins or their losses. For example, you might draft:
 
-* Giants wins
+* Giants wins (someone can also draft Giants losses but no one else can draft Giant wins)
 * Cowboys losses
 * Eagles losses
 * Washington losses
 
-As the season progresses, you get a point for each matching result. So, if the Giants go 10 - 6, they'd be worth 10 points at the end of the year.
+As the season progresses, you get a point for each matching result. So, if the Giants go 10 - 6, they'd be worth 10 points at the end of the year. The person who drafted Giants losses would get 6 points.
 
 **Both sides (wins and losses) of the same team can be drafted.** This means you are often rooting against someone else each week.
 
