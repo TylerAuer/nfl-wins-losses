@@ -13,10 +13,13 @@
   &:focus {
     color: white;
     background: black;
+    cursor: pointer;
   }
 
   &--close {
+    position: relative;
     font-size: 3rem;
+    padding: 0;
     border: none;
 
     &:hover,
