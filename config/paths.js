@@ -7,7 +7,7 @@ const getPublicUrlOrPath = require('react-dev-utils/getPublicUrlOrPath');
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebook/create-react-app/issues/637
 const appDirectory = fs.realpathSync(process.cwd());
-const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
 // We use `PUBLIC_URL` environment variable or "homepage" field to infer
 // "public path" at which the app is served.
@@ -37,7 +37,7 @@ const moduleFileExtensions = [
 
 // Resolve file paths in the same order as webpack
 const resolveModule = (resolveFn, filePath) => {
-  const extension = moduleFileExtensions.find(extension =>
+  const extension = moduleFileExtensions.find((extension) =>
     fs.existsSync(resolveFn(`${filePath}.${extension}`))
   );
 
@@ -53,12 +53,12 @@ module.exports = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
   appBuild: resolveApp('build'),
-  appPublic: resolveApp('public'),
-  appHtml: resolveApp('public/index.html'),
-  appIndexJs: resolveModule(resolveApp, 'src/index'),
+  appPublic: resolveApp('src/client/public'),
+  appHtml: resolveApp('src/client/public/index.html'),
+  appIndexJs: resolveModule(resolveApp, 'src/client/src/index'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
-  appTsConfig: resolveApp('tsconfig.json'),
+  appTsConfig: resolveApp('tsconfig.client.json'),
   appJsConfig: resolveApp('jsconfig.json'),
   yarnLockFile: resolveApp('yarn.lock'),
   testsSetup: resolveModule(resolveApp, 'src/setupTests'),
@@ -66,7 +66,5 @@ module.exports = {
   appNodeModules: resolveApp('node_modules'),
   publicUrlOrPath,
 };
-
-
 
 module.exports.moduleFileExtensions = moduleFileExtensions;

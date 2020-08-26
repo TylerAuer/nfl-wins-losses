@@ -4,8 +4,8 @@
   "description": "NFL Wins / Losses League",
   "main": "index.js",
   "scripts": {
-    "build:client": "node /scripts/build",
-    "build:server": "tsc",
+    "build:client": "node scripts/build",
+    "build:server": "tsc -p tsconfig.server.json",
     "build": "run-p build:* --print-label",
     "start:client": "cd client/; npm start",
     "start:server": "nodemon server/src/index.ts",
@@ -158,5 +158,5 @@
       "jest-watch-typeahead/filename",
       "jest-watch-typeahead/testname"
     ]
-  },
+  }
 }
