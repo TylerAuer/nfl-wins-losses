@@ -26,7 +26,8 @@ app.get('/bump', (req: Request, res: Response): void => {
 
 ////////////////////////////////////////////////////////////////////////////////
 //   START SERVER   ////////////////////////////////////////////////////////////
-
 app.listen(port, () => {
   console.log(`Spinning up app on port: ${port}`);
 });
+
+console.log('Hi, Earth!');

@@ -21,12 +21,13 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start:client": "react-scripts start",
-    "start:server": "ts-node server/index.ts",
-    "start": "run-p start:*",
-    "build:empty": "rm -rf server",
+    "start": "react-scripts start",
+    "spin:server-watch": "tsc -w -p tsconfig.server.json",
+    "spin:server-start": "nodemon server/index.js",
+    "spin": "run-p spin:*",
+    "build:empty": "rm -rf dist",
     "build:client": "react-scripts build",
-    "build:move-client": "mkdir server && mv build server/client",
+    "build:move-client": "mkdir dist && mv build dist/client",
     "build:server": "tsc -p tsconfig.server.json",
     "build": "run-s build:*",
     "test": "react-scripts test",
@@ -46,5 +47,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://localhost:4000"
 }
