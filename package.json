@@ -4,12 +4,12 @@
   "description": "NFL Wins / Losses League",
   "main": "index.js",
   "scripts": {
-    "build:client": "cd client/; npm run build start",
+    "build:client": "cd client/; npm run build",
     "build:server": "tsc",
-    "build": "run-p build:client build:server; echo !!!Will not hot reload!!!",
+    "build": "run-p build:* --print-label",
     "start:client": "cd client/; npm start",
     "start:server": "nodemon server/src/index.ts",
-    "dev": "run-p start:client start:server"
+    "start": "run-p start:* --print-label"
   },
   "repository": {
     "type": "git",
