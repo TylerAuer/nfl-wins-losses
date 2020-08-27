@@ -3,9 +3,9 @@ import { Log } from './Log';
 import { buildTeams } from './onStart/buildTeams';
 import { buildPicks } from './onStart/buildPicks';
 import { buildOwners } from './onStart/buildOwners';
-import sendStandings from './routes/sendStandings';
 import sendOwners from './routes/sendOwners';
 import sendScoreboard from './routes/sendScoreboard';
+import sendRankings from './routes/sendRankings';
 import sendBump from './routes/sendBump';
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -49,7 +49,7 @@ app.get('/', (req: Request, res: Response): void => {
 ////////////////////////////////////////////////////////////////////////////////
 //   BACKEND ROUTES   //////////////////////////////////////////////////////////
 
-app.get('/standings', sendStandings);
+app.get('/rankings', sendRankings);
 app.get('/scoreboard', sendScoreboard);
 app.get('/owners', sendOwners);
 app.get('/bump', sendBump);
