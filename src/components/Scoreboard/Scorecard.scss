@@ -1,0 +1,83 @@
+.card {
+  --font-xl: 2.6rem;
+  --font-lg: 2.2rem;
+  --font-md: 1.8rem;
+  --font-sm: 1.5rem;
+  --main: black;
+  --dim: grey;
+
+  min-width: 50rem;
+  border: 2px solid black;
+  margin: 2rem;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+
+  &__header-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--font-sm);
+    font-style: italic;
+    color: grey;
+    padding-bottom: 1rem;
+
+    div {
+      padding: 0 5px;
+    }
+  }
+
+  &__team-row {
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem 1rem 0.5rem;
+  }
+
+  &__logo {
+    width: 4em;
+    height: auto;
+  }
+
+  &__name-and-owners {
+    padding-left: 2rem;
+    flex-grow: 1;
+  }
+
+  &__team-name {
+    font-size: var(--font-lg);
+  }
+
+  &__owners {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: var(--dim);
+  }
+
+  &__record {
+    color: var(--dim);
+    font-size: var(--font-md);
+    padding-left: 1.8rem;
+  }
+
+  &__score {
+    font-size: var(--font-xl);
+    text-align: right;
+  }
+
+  &__footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    color: grey;
+  }
+
+  &__gambling {
+    display: flex;
+    flex-direction: row;
+
+    div {
+      padding: 0 5px;
+    }
+  }
+}

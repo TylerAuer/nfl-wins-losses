@@ -5,6 +5,7 @@ import getLiveScores from '../callsToAPIs/getLiveScores';
 
 const sendScoreboard = async (req: Request, res: Response): Promise<void> => {
   if (cache.has('scoreboard')) {
+    console.log('From Cache');
     res.send(cache.get('scoreboard'));
   } else {
     // scoreboard data is not cached
@@ -12,9 +13,10 @@ const sendScoreboard = async (req: Request, res: Response): Promise<void> => {
     const teams: { [key: string]: Team } = req.app.locals.teams;
     const scoreboard = await getLiveScores(teams);
 
+    console.log('Just calculated');
     res.send(scoreboard);
 
-    cache.set('scoreboard', scoreboard, 20);
+    cache.set('scoreboard', scoreboard, 10);
   }
 };
 
