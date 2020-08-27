@@ -1,12 +1,12 @@
 .card {
-  --font-xl: 2.6rem;
-  --font-lg: 2.2rem;
-  --font-md: 1.8rem;
-  --font-sm: 1.5rem;
+  --font-xl: 2.2rem;
+  --font-lg: 2rem;
+  --font-md: 1.6rem;
+  --font-sm: 1.4rem;
   --main: black;
   --dim: grey;
 
-  min-width: 50rem;
+  min-width: 45rem;
   border: 2px solid black;
   margin: 2rem;
   padding: 1rem;
@@ -19,7 +19,6 @@
     font-size: var(--font-sm);
     font-style: italic;
     color: grey;
-    padding-bottom: 1rem;
 
     div {
       padding: 0 5px;
@@ -33,12 +32,12 @@
   }
 
   &__logo {
-    width: 4em;
+    width: 3em;
     height: auto;
   }
 
   &__name-and-owners {
-    padding-left: 2rem;
+    padding-left: 1rem;
     flex-grow: 1;
   }
 
@@ -68,7 +67,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 1rem;
     color: grey;
   }
 

@@ -50,6 +50,7 @@ export default function Scorecard({ data }) {
           alt={`${home.abbr} logo`}
           src={require(`../../logos/${home.abbr}.png`)}
         />
+
         <div className="card__name-and-owners">
           <div className="card__team-name">
             {home.fullName}

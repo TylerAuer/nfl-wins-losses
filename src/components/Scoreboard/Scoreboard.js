@@ -4,6 +4,9 @@ import Scorecard from './Scorecard';
 
 import './Scoreboard.scss';
 
+// TODO: Figure out how to sort the games in a reasonable way. Probably active
+// games first
+
 export default function Scoreboard() {
   const { scoreboard, loading } = useScoreboard();
 
@@ -16,8 +19,8 @@ export default function Scoreboard() {
   });
 
   return (
-    <section>
-      <h2>Week {scoreboard.week} Scores</h2>
+    <section className="scoreboard">
+      <h2 className="scoreboard__title">Week {scoreboard.week} Scores</h2>
       <div className="scoreboard">{cards}</div>
     </section>
   );
