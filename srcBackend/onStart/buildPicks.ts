@@ -15,7 +15,7 @@ export function buildPicks(teams: { [key: string]: Team }): Pick[] {
         id: parseInt(pick[1]),
         round: parseInt(pick[0]),
         team: teams[pick[3]],
-        winsOrLosses: pick[2] === 'W' ? 'wins' : 'losses',
+        winsOrLosses: pick[4] === 'W' ? 'wins' : 'losses',
       };
 
       return new Pick(props);

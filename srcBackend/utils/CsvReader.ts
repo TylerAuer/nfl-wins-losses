@@ -10,7 +10,7 @@ export class CsvReader {
       .readFileSync(this.filename, {
         encoding: 'utf-8',
       })
-      .split('\n')
+      .split('\r\n')
       .map((row: string): string[] => {
         return row.split(',');
       });
