@@ -6,6 +6,8 @@ export default function Scorecard({ data }) {
   const home = data.home.desc;
   const away = data.away.desc;
 
+  /////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////
   // TODO: Extract status (for clock and quarter) to separate component
   // since this will probably be fairly involved once I know the possibilities
   // in the ESPN API
@@ -16,14 +18,8 @@ export default function Scorecard({ data }) {
     </>
   );
   const inactiveStatus = null;
-
-  const awayRecord = !data.away.ties
-    ? `${data.away.wins} - ${data.away.losses}`
-    : `${data.away.wins} - ${data.away.losses} - ${data.away.ties}`;
-
-  const homeRecord = !data.home.ties
-    ? `${data.home.wins} - ${data.home.losses}`
-    : `${data.home.wins} - ${data.home.losses} - ${data.home.ties}`;
+  /////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////
 
   return (
     <div className="card" key={data.id}>
@@ -41,7 +37,7 @@ export default function Scorecard({ data }) {
         <div className="card__name-and-owners">
           <div className="card__team-name">
             {away.fullName}
-            <span className="card__record">{awayRecord}</span>
+            <span className="card__record">{data.away.record}</span>
           </div>
           <div className="card__owners">W: Connaughton L: Jessica</div>
         </div>
@@ -57,7 +53,7 @@ export default function Scorecard({ data }) {
         <div className="card__name-and-owners">
           <div className="card__team-name">
             {home.fullName}
-            <span className="card__record">{homeRecord}</span>
+            <span className="card__record">{data.home.record}</span>
           </div>
           <div className="card__owners">W: Connaughton L: Jessica</div>
         </div>
