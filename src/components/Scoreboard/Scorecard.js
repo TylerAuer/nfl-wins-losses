@@ -3,8 +3,8 @@ import React from 'react';
 import './Scorecard.scss';
 
 export default function Scorecard({ data }) {
-  const home = data.home.desc;
-  const away = data.away.desc;
+  const home = data.home.info;
+  const away = data.away.info;
 
   /////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////

@@ -23,7 +23,7 @@ export class Team {
   ties: number = 0;
   record: string = '';
 
-  constructor(public desc: TeamProps) {
+  constructor(public info: TeamProps) {
     this.updateRecord();
   }
 
