@@ -21,17 +21,21 @@ export class Team {
   wins: number = 0;
   losses: number = 0;
   ties: number = 0;
+  record: string = '';
 
-  constructor(public desc: TeamProps) {}
+  constructor(public desc: TeamProps) {
+    this.updateRecord();
+  }
 
   // Team's current record in '10 - 6' format or or '10 - 6 - 1' format if a
   // team has had a tie.
-  get record(): string {
-    let record = `${this.wins} - ${this.losses}`;
+  updateRecord(): void {
+    let str = `${this.wins} - ${this.losses}`;
     // Only add ties to the record if the team has had a tie
     if (this.ties > 0) {
-      record += ` - ${this.ties}`;
+      str += ` - ${this.ties}`;
     }
-    return record;
+
+    this.record = str;
   }
 }
