@@ -3,6 +3,7 @@ import sendStandings from './routes/standings';
 import sendScoreboard from './routes/scoreboard';
 import sendBump from './routes/bump';
 import { buildTeams } from './onStart/buildTeams';
+import { buildPicks } from './onStart/buildPicks';
 import { Log } from './Log';
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -14,12 +15,22 @@ const port = process.env.PORT || 4000;
 ////////////////////////////////////////////////////////////////////////////////
 //   GENERATE INITIAL DATA   ///////////////////////////////////////////////////
 //
-// Initializes initial data state which is then updated on subsequent API
+// Generates initial data state which is then updated on subsequent API
 // calls to monitor live games, league standings, and bump chart data
 //
-const initializeData = (): void => {
-  buildTeams().then((data) => (app.locals.teams = data));
-  Log.init(`Team Data`);
+const initializeData = async (): Promise<void> => {
+  const teams = await buildTeams();
+  Log.init(`Teams`);
+
+  const picks = await buildPicks(teams);
+  Log.init(`Picks`);
+
+  //const owners = buildOwners(picks)
+  //Log.init(`Owners`);
+
+  app.locals.teams = teams;
+  app.locals.picks = picks;
+  // app.locals.owners = owners;
 };
 
 initializeData();

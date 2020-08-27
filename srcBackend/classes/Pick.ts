@@ -1,6 +1,7 @@
 import { Team } from './Team';
 
-interface PickProps {
+export interface PickProps {
+  id: number;
   team: Team;
   winsOrLosses: 'wins' | 'losses';
   round: number;

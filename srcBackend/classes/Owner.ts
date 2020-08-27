@@ -7,31 +7,27 @@ interface OwnerProps {
   roundOnePickNumber: number;
   leagueID: number;
 
-  round1Pick: Pick;
-  round2Pick: Pick;
-  round3Pick: Pick;
-  round4Pick: Pick;
-  round5Pick: Pick;
-  round6Pick: Pick;
+  picks: Pick[];
 }
 
 export class Owner {
   constructor(public info: OwnerProps) {}
 
-  currentScore(): number {
+  get currentScore(): number {
     // Total points based on wins or losses and matching pick type
     return 0;
   }
 
-  tieBreakers(): number[] {
-    /** Returns an array of tiebreakers
-     * Total Points
-     * Round 6 points
-     * Round 5 points
-     * ...
-     * Round 1 points
-     * 10 - roundOnePickNumber (so highest is always better)
-     */
-    return [this.currentScore(), 0];
+  get tieBreakers(): number[] {
+    return [
+      this.currentScore,
+      this.info.picks[5].points,
+      this.info.picks[4].points,
+      this.info.picks[3].points,
+      this.info.picks[2].points,
+      this.info.picks[1].points,
+      this.info.picks[0].points,
+      11 - this.info.roundOnePickNumber,
+    ];
   }
 }
