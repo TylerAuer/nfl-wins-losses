@@ -20,14 +20,14 @@ export class Owner {
 
   get tieBreakers(): number[] {
     return [
-      this.currentScore,
-      this.info.draft[5].points,
-      this.info.draft[4].points,
-      this.info.draft[3].points,
-      this.info.draft[2].points,
-      this.info.draft[1].points,
-      this.info.draft[0].points,
-      11 - this.info.roundOnePickNumber,
+      this.currentScore, // total points
+      this.info.draft[5].points, // points from pick in round 6
+      this.info.draft[4].points, // points from pick in round 5
+      this.info.draft[3].points, // points from pick in round 4
+      this.info.draft[2].points, // points from pick in round 3
+      this.info.draft[1].points, // points from pick in round 2
+      this.info.draft[0].points, // points from pick in round 1
+      this.info.roundOnePickNumber, // later pick in rd 1
     ];
   }
 }
