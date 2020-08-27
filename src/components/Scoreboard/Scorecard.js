@@ -29,14 +29,16 @@ export default function Scorecard({ data }) {
       </div>
 
       <div className="card__team-row">
-        <img
-          className="card__logo"
-          alt={`${away.abbr} logo`}
-          src={require(`../../logos/${away.abbr}.png`)}
-        />
+        <a href={away.espnLink}>
+          <img
+            className="card__logo"
+            alt={`${away.abbr} logo`}
+            src={require(`../../logos/${away.abbr}.png`)}
+          />
+        </a>
         <div className="card__name-and-owners">
           <div className="card__team-name">
-            {away.fullName}
+            <a href={away.espnLink}>{away.fullName}</a>
             <span className="card__record">{away.record}</span>
           </div>
           <div className="card__owners">W: Connaughton L: Jessica</div>
@@ -45,15 +47,16 @@ export default function Scorecard({ data }) {
       </div>
 
       <div className="card__team-row">
-        <img
-          className="card__logo"
-          alt={`${home.abbr} logo`}
-          src={require(`../../logos/${home.abbr}.png`)}
-        />
-
+        <a href={home.espnLink}>
+          <img
+            className="card__logo"
+            alt={`${home.abbr} logo`}
+            src={require(`../../logos/${home.abbr}.png`)}
+          />
+        </a>
         <div className="card__name-and-owners">
           <div className="card__team-name">
-            {home.fullName}
+            <a href={home.espnLink}>{home.fullName}</a>
             <span className="card__record">{home.record}</span>
           </div>
           <div className="card__owners">W: Connaughton L: Jessica</div>
