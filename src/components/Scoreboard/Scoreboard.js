@@ -11,7 +11,7 @@ export default function Scoreboard() {
   const { scoreboard, loading } = useScoreboard();
 
   if (loading) {
-    return <h2>Hang in there...loading data</h2>;
+    return <h2 className="section-header">Hang in there...loading data</h2>;
   }
 
   const cards = scoreboard.games.map((game) => {
@@ -20,7 +20,7 @@ export default function Scoreboard() {
 
   return (
     <section className="scoreboard">
-      <h2 className="scoreboard__title">Week {scoreboard.week} Scores</h2>
+      <h2 className="section-header">Week {scoreboard.week} Scores</h2>
       <div className="scoreboard">{cards}</div>
     </section>
   );
