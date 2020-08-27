@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { cache } from '../cache';
 import { Log } from '../Log';
 import { Team } from '../classes/Team';
-import getLiveScores from '../callsToAPIs/getLiveScores';
+import getLiveScores from '../computations/getLiveScores';
 
 const sendScoreboard = async (req: Request, res: Response): Promise<void> => {
   if (cache.has('scoreboard')) {

@@ -1,7 +1,6 @@
 import { CsvReader } from '../utils/CsvReader';
 import { Owner, OwnerProps } from '../classes/Owner';
-import { Pick, PickProps } from '../classes/Pick';
-import { Team } from '../classes/Team';
+import { Pick } from '../classes/Pick';
 
 export function buildOwners(picks: Pick[]): { [key: string]: Owner } {
   // LOAD CSV FILE
@@ -9,7 +8,7 @@ export function buildOwners(picks: Pick[]): { [key: string]: Owner } {
   ownerCsv.read();
   const ownerData: string[][] = ownerCsv.data;
 
-  const owners = {};
+  const owners: { [key: string]: Owner } = {};
   for (let row of ownerData) {
     const ownerProps: OwnerProps = {
       fullName: row[1],

@@ -1,4 +1,3 @@
-// Builds teams
 import axios from 'axios';
 import { Team } from '../classes/Team';
 import { staticTeamData } from '../staticTeamData';
