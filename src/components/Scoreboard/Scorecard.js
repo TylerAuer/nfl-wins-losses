@@ -3,8 +3,8 @@ import React from 'react';
 import './Scorecard.scss';
 
 export default function Scorecard({ data }) {
-  const home = data.home.info;
-  const away = data.away.info;
+  const home = data.home;
+  const away = data.away;
 
   /////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////
@@ -22,7 +22,7 @@ export default function Scorecard({ data }) {
   /////////////////////////////////////////////////////////////////////////////
 
   return (
-    <div className="card" key={data.id}>
+    <div className="card">
       <div className="card__header-row">
         <div>{data.stadium}</div>
         <div>{data.tvNetwork}</div>
@@ -37,7 +37,7 @@ export default function Scorecard({ data }) {
         <div className="card__name-and-owners">
           <div className="card__team-name">
             {away.fullName}
-            <span className="card__record">{data.away.record}</span>
+            <span className="card__record">{away.record}</span>
           </div>
           <div className="card__owners">W: Connaughton L: Jessica</div>
         </div>
@@ -54,7 +54,7 @@ export default function Scorecard({ data }) {
         <div className="card__name-and-owners">
           <div className="card__team-name">
             {home.fullName}
-            <span className="card__record">{data.home.record}</span>
+            <span className="card__record">{home.record}</span>
           </div>
           <div className="card__owners">W: Connaughton L: Jessica</div>
         </div>

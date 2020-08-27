@@ -23,13 +23,15 @@ export class Team {
   ties: number = 0;
   record: string = '';
 
-  constructor(public info: TeamProps) {
-    this.updateRecord();
+  constructor(info: TeamProps) {
+    Object.assign(this, info); // destructures TeamProps object
+
+    this.makeRecordString();
   }
 
   // Team's current record in '10 - 6' format or or '10 - 6 - 1' format if a
   // team has had a tie.
-  updateRecord(): void {
+  makeRecordString(): void {
     let str = `${this.wins} - ${this.losses}`;
     // Only add ties to the record if the team has had a tie
     if (this.ties > 0) {

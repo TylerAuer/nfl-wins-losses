@@ -16,7 +16,9 @@ interface OwnerProps {
 }
 
 export class Owner {
-  constructor(public info: OwnerProps) {}
+  constructor(info: OwnerProps) {
+    Object.assign(this, info); // destructures TeamProps object
+  }
 
   currentScore(): number {
     // Total points based on wins or losses and matching pick type

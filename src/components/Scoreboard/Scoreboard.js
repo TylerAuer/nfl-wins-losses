@@ -14,8 +14,8 @@ export default function Scoreboard() {
     return <h2>Hang in there...loading data</h2>;
   }
 
-  const cards = scoreboard.games.map((g) => {
-    return <Scorecard data={g.info} />;
+  const cards = scoreboard.games.map((game) => {
+    return <Scorecard key={game.id} data={game} />;
   });
 
   return (

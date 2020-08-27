@@ -17,7 +17,7 @@ export interface GameProps {
   total: number;
 
   // TODO: Not sure if the API provides this information for live games
-  //possession: Possession;
+  // possession: Possession;
   // down: number;
   // distance: number;
 
@@ -29,7 +29,9 @@ export interface GameProps {
 }
 
 export class Game {
-  constructor(public info: GameProps) {}
+  constructor(info: GameProps) {
+    Object.assign(this, info); // destructures GameProps object
+  }
 
   //homeWinProbability: number;
   //awayWinProbability: number;

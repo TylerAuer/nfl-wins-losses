@@ -7,5 +7,7 @@ interface PickProps {
 }
 
 export class Pick {
-  constructor(public info: PickProps) {}
+  constructor(info: PickProps) {
+    Object.assign(this, info);
+  }
 }
