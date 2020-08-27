@@ -1,9 +1,11 @@
 import express, { Request, Response } from 'express';
-import sendStandings from './routes/standings';
-import sendScoreboard from './routes/scoreboard';
-import sendBump from './routes/bump';
 import { buildTeams } from './onStart/buildTeams';
 import { buildPicks } from './onStart/buildPicks';
+import { buildOwners } from './onStart/buildOwners';
+import sendStandings from './routes/standings';
+import sendOwners from './routes/owners';
+import sendScoreboard from './routes/scoreboard';
+import sendBump from './routes/bump';
 import { Log } from './Log';
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -25,12 +27,12 @@ const initializeData = async (): Promise<void> => {
   const picks = await buildPicks(teams);
   Log.init(`Picks`);
 
-  //const owners = buildOwners(picks)
-  //Log.init(`Owners`);
+  const owners = await buildOwners(picks);
+  Log.init(`Owners`);
 
   app.locals.teams = teams;
   app.locals.picks = picks;
-  // app.locals.owners = owners;
+  app.locals.owners = owners;
 };
 
 initializeData();
@@ -49,6 +51,7 @@ app.get('/', (req: Request, res: Response): void => {
 
 app.get('/standings', sendStandings);
 app.get('/scoreboard', sendScoreboard);
+app.get('/owners', sendOwners);
 app.get('/bump', sendBump);
 
 ////////////////////////////////////////////////////////////////////////////////
