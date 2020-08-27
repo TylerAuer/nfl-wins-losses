@@ -1,12 +1,12 @@
 import express, { Request, Response } from 'express';
+import { Log } from './Log';
 import { buildTeams } from './onStart/buildTeams';
 import { buildPicks } from './onStart/buildPicks';
 import { buildOwners } from './onStart/buildOwners';
-import sendStandings from './routes/standings';
-import sendOwners from './routes/owners';
-import sendScoreboard from './routes/scoreboard';
-import sendBump from './routes/bump';
-import { Log } from './Log';
+import sendStandings from './routes/sendStandings';
+import sendOwners from './routes/sendOwners';
+import sendScoreboard from './routes/sendScoreboard';
+import sendBump from './routes/sendBump';
 
 ////////////////////////////////////////////////////////////////////////////////
 //   CONFIGURE APP   ///////////////////////////////////////////////////////////
