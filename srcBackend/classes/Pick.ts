@@ -7,7 +7,13 @@ interface PickProps {
 }
 
 export class Pick {
-  constructor(info: PickProps) {
-    Object.assign(this, info);
+  constructor(public info: PickProps) {}
+
+  get points(): number {
+    if (this.info.winsOrLosses === 'wins') {
+      return this.info.team.wins;
+    } else {
+      return this.info.team.losses;
+    }
   }
 }

@@ -23,9 +23,7 @@ export class Team {
   ties: number = 0;
   record: string = '';
 
-  constructor(info: TeamProps) {
-    Object.assign(this, info); // destructures TeamProps object
-
+  constructor(public info: TeamProps) {
     this.makeRecordString();
   }
 

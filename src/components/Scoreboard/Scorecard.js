@@ -3,8 +3,8 @@ import React from 'react';
 import './Scorecard.scss';
 
 export default function Scorecard({ data }) {
-  const home = data.home;
-  const away = data.away;
+  const home = data.info.home.info;
+  const away = data.info.away.info;
 
   /////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////
@@ -24,8 +24,8 @@ export default function Scorecard({ data }) {
   return (
     <div className="card">
       <div className="card__header-row">
-        <div>{data.stadium}</div>
-        <div>{data.tvNetwork}</div>
+        <div>{data.info.stadium}</div>
+        <div>{data.info.tvNetwork}</div>
       </div>
 
       <div className="card__team-row">
@@ -41,7 +41,7 @@ export default function Scorecard({ data }) {
           </div>
           <div className="card__owners">W: Connaughton L: Jessica</div>
         </div>
-        <div className="card__score">{data.awayScore}</div>
+        <div className="card__score">{data.info.awayScore}</div>
       </div>
 
       <div className="card__team-row">
@@ -58,16 +58,16 @@ export default function Scorecard({ data }) {
           </div>
           <div className="card__owners">W: Connaughton L: Jessica</div>
         </div>
-        <div className="card__score">{data.homeScore}</div>
+        <div className="card__score">{data.info.homeScore}</div>
       </div>
 
       <div className="card__footer-row">
         <div className="card__gambling">
-          <div className="card__spread">{data.line}</div>
-          <div className="card__total">O/U: {data.total}</div>
+          <div className="card__spread">{data.info.line}</div>
+          <div className="card__total">O/U: {data.info.total}</div>
         </div>
         <div className="card__status">
-          {data.quarter !== 0 ? activeStatus : inactiveStatus}
+          {data.info.quarter !== 0 ? activeStatus : inactiveStatus}
         </div>
       </div>
     </div>

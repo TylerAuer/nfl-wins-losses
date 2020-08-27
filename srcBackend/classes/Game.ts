@@ -29,9 +29,7 @@ export interface GameProps {
 }
 
 export class Game {
-  constructor(info: GameProps) {
-    Object.assign(this, info); // destructures GameProps object
-  }
+  constructor(public info: GameProps) {}
 
   //homeWinProbability: number;
   //awayWinProbability: number;
