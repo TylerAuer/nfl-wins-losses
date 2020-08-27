@@ -9,6 +9,9 @@ const sendScoreboard = async (req: Request, res: Response): Promise<void> => {
     res.send(cache.get('scoreboard'));
     Log.send('Scoreboard data');
   } else {
+    if (!req.app.locals.teams) {
+      throw new Error('Team data has not loaded yet.');
+    }
     // scoreboard data is not cached
     // so, generate it, send it, and cache it
     const teams: { [key: string]: Team } = req.app.locals.teams;
