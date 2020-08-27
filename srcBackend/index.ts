@@ -3,6 +3,7 @@ import sendStandings from './routes/standings';
 import sendScoreboard from './routes/scoreboard';
 import sendBump from './routes/bump';
 import { buildTeams } from './onStart/buildTeams';
+import { Log } from './Log';
 
 ////////////////////////////////////////////////////////////////////////////////
 //   CONFIGURE APP   ///////////////////////////////////////////////////////////
@@ -18,6 +19,7 @@ const port = process.env.PORT || 4000;
 //
 const initializeData = (): void => {
   buildTeams().then((data) => (app.locals.teams = data));
+  Log.init(`Team Data`);
 };
 
 initializeData();

@@ -12,4 +12,8 @@ export class Log {
   static compute(msg: string): void {
     console.log(chalk.green(`COMPUTED: ${msg}`));
   }
+
+  static init(msg: string): void {
+    console.log(chalk.yellow(`INITIALIZED: ${msg}`));
+  }
 }
