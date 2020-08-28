@@ -17,7 +17,7 @@ export default function useScoreboard() {
 
     setInterval(() => {
       getScores();
-    }, 30 * 1000);
+    }, 10 * 1000);
   }, []);
 
   return { scoreboard, loading };

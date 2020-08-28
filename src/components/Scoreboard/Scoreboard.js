@@ -19,7 +19,7 @@ export default function Scoreboard() {
   });
 
   return (
-    <section className="scoreboard">
+    <section id="scoreboard">
       <h2 className="section-header">Week {scoreboard.week} Scores</h2>
       <div className="scoreboard">{cards}</div>
     </section>
