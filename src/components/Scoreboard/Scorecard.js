@@ -80,7 +80,7 @@ export default function Scorecard({ game, ownersByTeam }) {
         <div className="card__name-and-owners">
           <div className="card__team-name">
             <a href={away.espnLink}>{away.fullName}</a>
-            <span className="card__record">{away.record}</span>
+            <span className="card__record">{game.info.away.record}</span>
           </div>
           <div className="card__owners">
             {awayWinsOwnerString}
@@ -101,7 +101,7 @@ export default function Scorecard({ game, ownersByTeam }) {
         <div className="card__name-and-owners">
           <div className="card__team-name">
             <a href={home.espnLink}>{home.fullName}</a>
-            <span className="card__record">{home.record}</span>
+            <span className="card__record">{game.info.home.record}</span>
           </div>
           <div className="card__owners">
             {homeWinsOwnerString}
