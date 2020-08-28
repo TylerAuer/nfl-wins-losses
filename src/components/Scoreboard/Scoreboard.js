@@ -1,21 +1,24 @@
 import React from 'react';
 import useScoreboard from '../../hooks/useScoreboard';
+import useOwnersByTeam from '../../hooks/useOwnersByTeam';
 import Scorecard from './Scorecard';
-
 import './Scoreboard.scss';
 
 // TODO: Figure out how to sort the games in a reasonable way. Probably active
 // games first
 
 export default function Scoreboard() {
-  const { scoreboard, loading } = useScoreboard();
+  const { scoreboard, loading: sLoading } = useScoreboard();
+  const { ownersByTeam, loading: oLoading } = useOwnersByTeam();
 
-  if (loading) {
+  if (sLoading || oLoading) {
     return <h2 className="section-header">Hang in there...loading data</h2>;
   }
 
   const cards = scoreboard.games.map((game) => {
-    return <Scorecard key={game.id} data={game} />;
+    return (
+      <Scorecard key={game.info.id} game={game} ownersByTeam={ownersByTeam} />
+    );
   });
 
   return (

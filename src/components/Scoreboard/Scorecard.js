@@ -2,9 +2,34 @@ import React from 'react';
 
 import './Scorecard.scss';
 
-export default function Scorecard({ data }) {
-  const home = data.info.home.info;
-  const away = data.info.away.info;
+export default function Scorecard({ game, ownersByTeam }) {
+  const home = game.info.home.info;
+  const away = game.info.away.info;
+
+  // Make strings for each team's owners and winners
+  const homeWinsOwner = ownersByTeam[home.abbr].wins;
+  const homeWinsOwnerString = homeWinsOwner ? (
+    <span className="card__wins-owner">{`W: ${homeWinsOwner.info.shortName}`}</span>
+  ) : (
+    ''
+  );
+
+  const homeLossesOwner = ownersByTeam[home.abbr].losses;
+  const homeLossesOwnerString = homeLossesOwner
+    ? `L: ${homeLossesOwner.info.shortName}`
+    : '';
+
+  const awayWinsOwner = ownersByTeam[away.abbr].wins;
+  const awayWinsOwnerString = awayWinsOwner ? (
+    <span className="card__wins-owner">{`W: ${awayWinsOwner.info.shortName}`}</span>
+  ) : (
+    ''
+  );
+
+  const awayLossesOwner = ownersByTeam[away.abbr].losses;
+  const awayLossesOwnerString = awayLossesOwner
+    ? `L: ${awayLossesOwner.info.shortName}`
+    : '';
 
   /////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////
@@ -13,8 +38,8 @@ export default function Scorecard({ data }) {
   // in the ESPN API
   const activeStatus = (
     <>
-      <div className="card__time">{data.clock}</div>
-      <div className="card__quarter">{`Q${data.quarter}`}</div>
+      <div className="card__time">{game.clock}</div>
+      <div className="card__quarter">{`Q${game.quarter}`}</div>
     </>
   );
   const inactiveStatus = null;
@@ -24,8 +49,8 @@ export default function Scorecard({ data }) {
   return (
     <div className="card">
       <div className="card__header-row">
-        <div>{data.info.stadium}</div>
-        <div>{data.info.tvNetwork}</div>
+        <div>{game.info.stadium}</div>
+        <div>{game.info.tvNetwork}</div>
       </div>
 
       <div className="card__team-row">
@@ -41,9 +66,12 @@ export default function Scorecard({ data }) {
             <a href={away.espnLink}>{away.fullName}</a>
             <span className="card__record">{away.record}</span>
           </div>
-          <div className="card__owners">W: Connaughton L: Jessica</div>
+          <div className="card__owners">
+            {awayWinsOwnerString}
+            {awayLossesOwnerString}
+          </div>
         </div>
-        <div className="card__score">{data.info.awayScore}</div>
+        <div className="card__score">{game.info.awayScore}</div>
       </div>
 
       <div className="card__team-row">
@@ -59,18 +87,21 @@ export default function Scorecard({ data }) {
             <a href={home.espnLink}>{home.fullName}</a>
             <span className="card__record">{home.record}</span>
           </div>
-          <div className="card__owners">W: Connaughton L: Jessica</div>
+          <div className="card__owners">
+            {homeWinsOwnerString}
+            {homeLossesOwnerString}
+          </div>
         </div>
-        <div className="card__score">{data.info.homeScore}</div>
+        <div className="card__score">{game.info.homeScore}</div>
       </div>
 
       <div className="card__footer-row">
         <div className="card__gambling">
-          <div className="card__spread">{data.info.line}</div>
-          <div className="card__total">O/U: {data.info.total}</div>
+          <div className="card__spread">{game.info.line}</div>
+          <div className="card__total">O/U: {game.info.total}</div>
         </div>
         <div className="card__status">
-          {data.info.quarter !== 0 ? activeStatus : inactiveStatus}
+          {game.info.quarter !== 0 ? activeStatus : inactiveStatus}
         </div>
       </div>
     </div>
