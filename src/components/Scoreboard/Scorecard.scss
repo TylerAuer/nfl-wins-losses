@@ -8,8 +8,8 @@
 
   min-width: 45rem;
   border: 2px solid black;
-  margin: 2rem;
-  padding: 1rem;
+  margin: 1.5rem;
+  padding: 0.7rem;
   border-radius: 5px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
 
@@ -82,6 +82,8 @@
     justify-content: space-between;
     align-items: center;
     color: grey;
+    font-style: italic;
+    font-size: var(--font-sm);
   }
 
   &__gambling {
