@@ -7,29 +7,42 @@ export default function Scorecard({ game, ownersByTeam }) {
   const away = game.info.away.info;
 
   // Make strings for each team's owners and winners
-  const homeWinsOwner = ownersByTeam[home.abbr].wins;
-  const homeWinsOwnerString = homeWinsOwner ? (
-    <span className="card__wins-owner">{`W: ${homeWinsOwner.info.shortName}`}</span>
-  ) : (
-    ''
-  );
-
-  const homeLossesOwner = ownersByTeam[home.abbr].losses;
-  const homeLossesOwnerString = homeLossesOwner
-    ? `L: ${homeLossesOwner.info.shortName}`
-    : '';
-
   const awayWinsOwner = ownersByTeam[away.abbr].wins;
+  // If no owner return empty string, otherwise link to owner in ratings
   const awayWinsOwnerString = awayWinsOwner ? (
-    <span className="card__wins-owner">{`W: ${awayWinsOwner.info.shortName}`}</span>
+    <a href={`#${awayWinsOwner.info.shortName}`} className="card__wins-owner">
+      {`W: ${awayWinsOwner.info.shortName}`}
+    </a>
   ) : (
     ''
   );
 
   const awayLossesOwner = ownersByTeam[away.abbr].losses;
-  const awayLossesOwnerString = awayLossesOwner
-    ? `L: ${awayLossesOwner.info.shortName}`
-    : '';
+  const awayLossesOwnerString = awayLossesOwner ? (
+    <a href={`#${awayLossesOwner.info.shortName}`}>
+      {`L: ${awayLossesOwner.info.shortName}`}
+    </a>
+  ) : (
+    ''
+  );
+
+  const homeWinsOwner = ownersByTeam[home.abbr].wins;
+  const homeWinsOwnerString = homeWinsOwner ? (
+    <a href={`#${homeWinsOwner.info.shortName}`} className="card__wins-owner">
+      {`W: ${homeWinsOwner.info.shortName}`}
+    </a>
+  ) : (
+    ''
+  );
+
+  const homeLossesOwner = ownersByTeam[home.abbr].losses;
+  const homeLossesOwnerString = homeLossesOwner ? (
+    <a href={`#${homeLossesOwner.info.shortName}`}>
+      {`L: ${homeLossesOwner.info.shortName}`}
+    </a>
+  ) : (
+    ''
+  );
 
   /////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////
