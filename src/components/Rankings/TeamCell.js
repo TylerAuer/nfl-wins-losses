@@ -16,7 +16,7 @@ export default function ({ pick, points }) {
         />
       </a>
       <div className={`team-cell__points team-cell__points--${type}`}>
-        {points} {type}
+        {points}
       </div>
     </div>
   );
