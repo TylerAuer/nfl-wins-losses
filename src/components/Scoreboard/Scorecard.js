@@ -1,5 +1,5 @@
 import React from 'react';
-
+import prettyGameTime from '../../functions/prettyGameTime';
 import './Scorecard.scss';
 
 export default function Scorecard({ game, ownersByTeam }) {
@@ -55,7 +55,10 @@ export default function Scorecard({ game, ownersByTeam }) {
       <div className="card__quarter">{`Q${game.quarter}`}</div>
     </>
   );
-  const inactiveStatus = null;
+
+  const inactiveStatus = (
+    <div className="card__date">{prettyGameTime(game.info.date)}</div>
+  );
   /////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////
 
