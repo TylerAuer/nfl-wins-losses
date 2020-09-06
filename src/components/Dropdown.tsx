@@ -3,20 +3,36 @@ import Button from './Button';
 import './Dropdown.scss';
 
 interface Props {
-  category: string;
-  list: string[];
+  owner: string | null;
+  setOwner: (string: string | null) => void;
 }
 
-export default function Dropdown({ category, list }: Props) {
+export default function Dropdown({ owner, setOwner }: Props) {
   const [isOpen, setIsOpen] = useState(false);
-  const [active, setActive] = useState(null);
+  const ownerList = [
+    'Tyler',
+    'Jessica',
+    'Jamie',
+    'Amy',
+    'Susan',
+    'Tillman',
+    'Howard',
+    'Rachel',
+    'Whitney',
+    'Barbara',
+  ];
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const onOwnerClick = (owner: string | null): void => {
+    toggleMenu();
+    setOwner(owner);
+  };
+
   const closed = (
-    <Button key={1} onClick={toggleMenu} text={active || category} />
+    <Button key={1} onClick={toggleMenu} text={owner || 'Owner'} />
   );
 
   const open = (
@@ -24,10 +40,10 @@ export default function Dropdown({ category, list }: Props) {
       <Button className="button--close" onClick={toggleMenu} text="&times;" />
       <div className="dropdown__list-div">
         <ul className="dropdown__list-ul">
-          {list.map((item) => {
+          {ownerList.map((owner) => {
             return (
-              <li className="dropdown__list-item">
-                <Button key={2} text={item} onClick={toggleMenu} />
+              <li className="dropdown__list-item" key={owner}>
+                <Button text={owner} onClick={() => onOwnerClick(owner)} />
               </li>
             );
           })}
