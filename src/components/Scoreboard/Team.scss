@@ -1,0 +1,74 @@
+.team {
+  --font-xl: 2.2rem;
+  --font-lg: 2rem;
+  --font-md: 1.6rem;
+  --font-sm: 1.4rem;
+  --main: black;
+  --dim: grey;
+
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem 1rem 0.5rem;
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+
+  &__logo {
+    width: 3em;
+    height: auto;
+    vertical-align: middle;
+
+    @media (max-width: 550px) {
+      width: 2.7rem;
+    }
+  }
+
+  &__name-and-owners {
+    padding-left: 1rem;
+    flex-grow: 1;
+  }
+
+  &__team-name {
+    font-size: var(--font-lg);
+
+    @media (max-width: 550px) {
+      font-size: var(--font-md);
+    }
+
+    @media (max-width: 450px) {
+      font-size: var(--font-xl);
+    }
+  }
+
+  &__record {
+    color: var(--dim);
+    font-size: var(--font-md);
+    padding-left: 1.2rem;
+
+    @media (max-width: 662px) {
+      display: none;
+    }
+  }
+
+  &__score {
+    font-size: var(--font-xl);
+    text-align: right;
+  }
+
+  &__owners {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    color: var(--dim);
+
+    a {
+      color: var(--dim);
+    }
+  }
+
+  &__wins-owner {
+    padding-right: 0.75rem;
+  }
+}

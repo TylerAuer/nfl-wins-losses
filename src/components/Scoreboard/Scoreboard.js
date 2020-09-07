@@ -11,7 +11,6 @@ export default function Scoreboard({ owner }) {
   const { scoreboard, loading: sLoading } = useScoreboard();
   const { ownersByTeam, loading: oLoading } = useOwnersByTeam();
 
-  console.log(scoreboard);
   if (sLoading || oLoading) {
     return <h2 className="section-header">Hang in there...loading data</h2>;
   }
