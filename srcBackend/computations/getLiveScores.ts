@@ -38,7 +38,7 @@ interface EspnGameApiResponse {
       names: string[];
     }[];
 
-    odds: {
+    odds?: {
       details: string;
       overUnder: number;
     }[];
@@ -64,6 +64,14 @@ export default function getLiveScores(teams: {
       const games: EspnGameApiResponse[] = res.data.events;
 
       for (let game of games) {
+        const odds = game.competitions[0].odds;
+        let line = '';
+        let total = 0;
+        if (odds) {
+          line = odds[0].details;
+          total = odds[0].overUnder;
+        }
+
         const gameProps: GameProps = {
           id: game.id,
           date: new Date(game.date),
@@ -73,14 +81,13 @@ export default function getLiveScores(teams: {
           away: teams[game.competitions[0].competitors[1].team.abbreviation],
           homeScore: game.competitions[0].competitors[0].score,
           awayScore: game.competitions[0].competitors[1].score,
-          line: game.competitions[0].odds[0].details,
-          total: game.competitions[0].odds[0].overUnder,
+          line: line,
+          total: total,
           quarter: game.status.period,
           clock: game.status.displayClock,
           stadium: game.competitions[0].venue.fullName,
           tvNetwork: game.competitions[0].broadcasts[0].names[0],
         };
-
         liveScores.games.push(new Game(gameProps));
       }
 
