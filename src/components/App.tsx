@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <Header owner={owner} setOwner={setOwner} />
-      <Scoreboard />
+      <Scoreboard owner={owner} />
       <Rankings />
     </div>
   );

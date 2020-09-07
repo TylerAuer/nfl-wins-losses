@@ -114,7 +114,9 @@ export default function Scorecard({ game, ownersByTeam }) {
       <div className="card__footer-row">
         <div className="card__gambling">
           <div className="card__spread">{game.info.line}</div>
-          <div className="card__total">O/U: {game.info.total}</div>
+          <div className="card__total">
+            {game.info.total ? `O/U: ${game.info.total}` : ''}
+          </div>
         </div>
         <div className="card__status">
           {game.info.quarter !== 0 ? activeStatus : inactiveStatus}
@@ -123,19 +125,3 @@ export default function Scorecard({ game, ownersByTeam }) {
     </div>
   );
 }
-
-// awayScore: "0"
-// clock: "0:00"
-// date: "2020-09-11T00:20:00.000Z"
-// homeScore: "0"
-// id: "401220225"
-// isFinished: false
-// line: "KC -10.0"
-// quarter: 0
-// stadium: "Arrowhead Stadium"
-// state: "pre"
-// total: 55
-// tvNetwork: "NBC"
-
-// away: {desc: {espnId: 34, espnUid: "s:20~l:28~t:34",…}, wins: 0, losses: 0, ties: 0}
-// home: {desc: {espnId: 12, espnUid: "s:20~l:28~t:12",…}, wins: 0, losses: 0, ties: 0}
