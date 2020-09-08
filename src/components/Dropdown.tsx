@@ -1,4 +1,4 @@
-import React, { useState, JSXElementConstructor } from 'react';
+import React, { useState } from 'react';
 import Button from './Button';
 import './Dropdown.scss';
 
@@ -15,7 +15,7 @@ interface Props {
 }
 
 export default function Dropdown({ owner, setOwner, rankings }: Props) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   if (!rankings) {
     return null;
