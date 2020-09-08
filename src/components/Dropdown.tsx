@@ -2,25 +2,28 @@ import React, { useState } from 'react';
 import Button from './Button';
 import './Dropdown.scss';
 
+interface Owner {
+  owner: {
+    shortName: string;
+  };
+}
+
 interface Props {
   owner: string | null;
   setOwner: (string: string | null) => void;
+  rankings: Owner[] | null;
 }
 
-export default function Dropdown({ owner, setOwner }: Props) {
+export default function Dropdown({ owner, setOwner, rankings }: Props) {
   const [isOpen, setIsOpen] = useState(false);
-  const ownerList = [
-    'Tyler',
-    'Jessica',
-    'Jamie',
-    'Amy',
-    'Susan',
-    'Tillman',
-    'Howard',
-    'Rachel',
-    'Whitney',
-    'Barbara',
-  ];
+
+  // Use rankings to generate a list of Owners
+  let ownerList = ['Loading', 'list', 'of', 'owners'];
+  if (rankings) {
+    ownerList = rankings.map((o: Owner): string => {
+      return o.owner.shortName;
+    });
+  }
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);

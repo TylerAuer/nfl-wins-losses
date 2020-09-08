@@ -1,11 +1,8 @@
 import React from 'react';
-import useRankings from '../../hooks/useRankings';
 import Owner from './Owner';
 import './Rankings.scss';
 
-export default function Rankings() {
-  const { rankings, loading } = useRankings();
-
+export default function Rankings({ rankings, loading }) {
   if (loading) {
     return <h2 className="section-header">Hang in there...loading data</h2>;
   }

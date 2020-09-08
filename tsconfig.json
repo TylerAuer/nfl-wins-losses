@@ -14,6 +14,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
+    "strictNullChecks": true,
     "rootDir": "./" /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */,
     "outDir": "build/client" /* Redirect output structure to the directory. */
   },
