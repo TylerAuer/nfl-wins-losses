@@ -14,20 +14,47 @@
     font-size: 1.8rem;
   }
 
+  @media (max-width: 500px) {
+    font-size: 1.6rem;
+  }
+
   &__rank {
-    padding: 0 2rem;
-    width: 9rem;
+    padding: 1rem;
+    width: 10rem;
     font-weight: bold;
   }
 
   &__score {
     padding: 0 2rem;
     width: 15rem;
+
+    @media (max-width: 900px) {
+      padding: 0 1rem;
+    }
+
+    &::after {
+      content: ' points';
+
+      @media (max-width: 1250px) {
+        content: ' pts.';
+      }
+
+      @media (max-width: 320px) {
+        content: '';
+      }
+    }
   }
 
   &__name {
     padding: 0 2rem;
     width: 25rem;
+
+    @media (max-width: 1300px) {
+      flex-grow: 1;
+    }
+    @media (max-width: 900px) {
+      padding: 0 1rem;
+    }
   }
 
   &__teams {
