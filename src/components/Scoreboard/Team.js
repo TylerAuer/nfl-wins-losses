@@ -1,7 +1,7 @@
 import React from 'react';
 import './Team.scss';
 
-export default function Team({ ownersByTeam, team, score }) {
+export default function Team({ owner, ownersByTeam, team, score }) {
   const espnLink = team.info.espnLink;
   const abbr = team.info.abbr;
   const fullName = team.info.fullName;
@@ -11,8 +11,16 @@ export default function Team({ ownersByTeam, team, score }) {
 
   let winsOwnerHtml = '';
   if (winsOwner) {
+    const isActiveOwner = winsOwner.info.shortName === owner;
     winsOwnerHtml = (
-      <a href={`#${winsOwner.info.shortName}`} className="team__wins-owner">
+      <a
+        href={`#${winsOwner.info.shortName}`}
+        className="team__wins-owner"
+        style={{
+          color: isActiveOwner && 'red',
+          fontWeight: isActiveOwner && 'bold',
+        }}
+      >
         W: {winsOwner.info.shortName}
       </a>
     );
@@ -20,8 +28,16 @@ export default function Team({ ownersByTeam, team, score }) {
 
   let lossesOwnerHtml = '';
   if (lossesOwner) {
+    const isActiveOwner = lossesOwner.info.shortName === owner;
     lossesOwnerHtml = (
-      <a href={`#${lossesOwner.info.shortName}`} className="team__losses-owner">
+      <a
+        href={`#${lossesOwner.info.shortName}`}
+        className="team__losses-owner"
+        style={{
+          color: isActiveOwner && 'red',
+          fontWeight: isActiveOwner && 'bold',
+        }}
+      >
         L: {lossesOwner.info.shortName}
       </a>
     );

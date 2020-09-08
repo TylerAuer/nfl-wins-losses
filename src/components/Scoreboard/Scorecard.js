@@ -30,12 +30,14 @@ export default function Scorecard({ game, owner, ownersByTeam }) {
       </div>
 
       <Team
+        owner={owner}
         ownersByTeam={ownersByTeam}
         team={game.info.away}
         score={game.info.awayScore}
       />
 
       <Team
+        owner={owner}
         ownersByTeam={ownersByTeam}
         team={game.info.home}
         score={game.info.homeScore}
