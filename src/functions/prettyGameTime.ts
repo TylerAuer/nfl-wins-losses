@@ -11,9 +11,17 @@ const prettyGameTime = (date: Date): string => {
     hour -= 12;
   }
 
-  const mins = d.getMinutes() || '';
+  const mins = d.getMinutes();
+  let prettyMins;
+  if (mins === 0) {
+    prettyMins = '';
+  } else if (mins < 10) {
+    prettyMins = ':0' + mins;
+  } else {
+    prettyMins = ':' + mins;
+  }
 
-  return `${day} ${hour}${mins && `:${mins}`} ${amOrPm}`;
+  return `${day} ${hour}${prettyMins} ${amOrPm}`;
 };
 
 export default prettyGameTime;
