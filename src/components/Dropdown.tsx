@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, JSXElementConstructor } from 'react';
 import Button from './Button';
 import './Dropdown.scss';
 
@@ -15,15 +15,25 @@ interface Props {
 }
 
 export default function Dropdown({ owner, setOwner, rankings }: Props) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
-  // Use rankings to generate a list of Owners
-  let ownerList = ['Loading', 'list', 'of', 'owners'];
-  if (rankings) {
-    ownerList = rankings.map((o: Owner): string => {
-      return o.owner.shortName;
-    });
+  if (!rankings) {
+    return null;
   }
+
+  // Use rankings to generate a list of owners for dropdown
+  let ownerList = rankings.map((o: Owner) => {
+    const name = o.owner.shortName;
+    return (
+      <button
+        key={name}
+        onClick={() => onOwnerClick(name)}
+        className="dropdown__button"
+      >
+        {name}
+      </button>
+    );
+  });
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -34,26 +44,14 @@ export default function Dropdown({ owner, setOwner, rankings }: Props) {
     setOwner(owner);
   };
 
-  const closed = (
-    <Button key={1} onClick={toggleMenu} text={owner || 'Owner'} />
+  return (
+    <menu className="dropdown">
+      <Button
+        className="dropdown__toggle"
+        onClick={toggleMenu}
+        text={owner || 'Owner'}
+      />
+      {isOpen && <div className="dropdown__div">{ownerList}</div>}
+    </menu>
   );
-
-  const open = (
-    <>
-      <Button className="button--close" onClick={toggleMenu} text="&times;" />
-      <div className="dropdown__list-div">
-        <ul className="dropdown__list-ul">
-          {ownerList.map((owner) => {
-            return (
-              <li className="dropdown__list-item" key={owner}>
-                <Button text={owner} onClick={() => onOwnerClick(owner)} />
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </>
-  );
-
-  return <menu className="dropdown">{isOpen ? open : closed}</menu>;
 }

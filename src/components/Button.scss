@@ -1,8 +1,8 @@
 .button {
-  padding: 1rem 3rem;
+  padding: 1rem 5rem;
   font-family: inherit;
   font-size: 1.6rem;
-  border-radius: 5px;
+  border-radius: 3px;
   border: 2px solid black;
   background: none;
   box-shadow: none;
@@ -15,18 +15,5 @@
     color: white;
     background: black;
     cursor: pointer;
-  }
-
-  &--close {
-    position: relative;
-    font-size: 3rem;
-    padding: 0;
-    border: none;
-
-    &:hover,
-    &:focus {
-      color: magenta;
-      background: none;
-    }
   }
 }
