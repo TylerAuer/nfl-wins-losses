@@ -1,9 +1,15 @@
 import React from 'react';
+import { Pick } from '../../../srcBackend/classes/Pick';
 import './TeamCell.scss';
 
-export default function ({ pick, points }) {
-  const type = pick.winsOrLosses;
-  const team = pick.team.info;
+interface TeamCellProps {
+  pick: Pick;
+  points: number;
+}
+
+export default function TeamCell({ pick, points }: TeamCellProps) {
+  const type = pick.info.winsOrLosses;
+  const team = pick.info.team.info;
   const abbr = team.abbr;
 
   return (

@@ -13,9 +13,9 @@ export interface Scoreboard {
   week: number;
 }
 
-type RankInfo = {
+export interface RankInfo {
   owner: Owner;
   tieBreakers: number[];
-};
+}
 
 export type Rankings = RankInfo[];
