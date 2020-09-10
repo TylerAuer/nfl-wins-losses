@@ -1,11 +1,12 @@
 import * as React from 'react';
+import { Rankings } from '../interfaces';
 import Dropdown from './Dropdown';
 import './Header.scss';
 
 interface Props {
-  owner: string | null;
-  setOwner: (string: string | null) => void;
-  rankings: [] | null;
+  owner: string;
+  setOwner: (string: string) => void;
+  rankings: Rankings;
 }
 
 export default function Header({ owner, setOwner, rankings }: Props) {

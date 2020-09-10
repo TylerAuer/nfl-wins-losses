@@ -1,29 +1,20 @@
 import React, { useState } from 'react';
+import { Rankings } from '../interfaces';
 import Button from './Button';
 import './Dropdown.scss';
 
-interface Owner {
-  owner: {
-    shortName: string;
-  };
-}
-
 interface Props {
-  owner: string | null;
-  setOwner: (string: string | null) => void;
-  rankings: Owner[] | null;
+  owner: string;
+  setOwner: (string: string) => void;
+  rankings: Rankings;
 }
 
 export default function Dropdown({ owner, setOwner, rankings }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
-  if (!rankings) {
-    return null;
-  }
-
   // Use rankings to generate a list of owners for dropdown
-  let ownerList = rankings.map((o: Owner) => {
-    const name = o.owner.shortName;
+  let ownerList = rankings.map((person) => {
+    const name = person.owner.info.shortName;
     return (
       <button
         key={name}
@@ -39,7 +30,7 @@ export default function Dropdown({ owner, setOwner, rankings }: Props) {
     setIsOpen(!isOpen);
   };
 
-  const onOwnerClick = (owner: string | null): void => {
+  const onOwnerClick = (owner: string): void => {
     toggleMenu();
     setOwner(owner);
   };
