@@ -2,11 +2,21 @@ import React from 'react';
 import useScoreboard from '../../hooks/useScoreboard';
 import Scorecard from './Scorecard';
 import './Scoreboard.scss';
+import { OwnersByTeam } from '../../interfaces';
 
 // TODO: Figure out how to sort the games in a reasonable way. Probably active
-// games first
+// games first. If a user is selected, would be good to have their games first.
+interface ScoreboardSectionProps {
+  userSelectedOwner: string;
+  ownersByTeam: OwnersByTeam;
+  oLoading: boolean;
+}
 
-export default function Scoreboard({ owner, ownersByTeam, oLoading }) {
+export default function ScoreboardSection({
+  userSelectedOwner,
+  ownersByTeam,
+  oLoading,
+}: ScoreboardSectionProps) {
   const { scoreboard, loading: sLoading } = useScoreboard();
 
   if (sLoading || oLoading) {
@@ -17,7 +27,7 @@ export default function Scoreboard({ owner, ownersByTeam, oLoading }) {
     return (
       <Scorecard
         key={game.info.id}
-        owner={owner}
+        userSelectedOwner={userSelectedOwner}
         game={game}
         ownersByTeam={ownersByTeam}
       />

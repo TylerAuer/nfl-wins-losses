@@ -1,9 +1,21 @@
 import React from 'react';
+import { Game } from '../../../srcBackend/classes/Game';
+import { OwnersByTeam } from '../../interfaces';
+import TeamRow from './TeamRow';
 import prettyGameTime from '../../functions/prettyGameTime';
-import Team from './Team';
 import './Scorecard.scss';
 
-export default function Scorecard({ game, owner, ownersByTeam }) {
+interface ScorecardProps {
+  game: Game;
+  userSelectedOwner: string;
+  ownersByTeam: OwnersByTeam;
+}
+
+export default function Scorecard({
+  game,
+  userSelectedOwner,
+  ownersByTeam,
+}: ScorecardProps) {
   /////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////
   // TODO: Extract status (for clock and quarter) to separate component
@@ -11,8 +23,8 @@ export default function Scorecard({ game, owner, ownersByTeam }) {
   // in the ESPN API
   const activeStatus = (
     <>
-      <div className="card__time">{game.clock}</div>
-      <div className="card__quarter">{`Q${game.quarter}`}</div>
+      <div className="card__time">{game.info.clock}</div>
+      <div className="card__quarter">{`Q${game.info.quarter}`}</div>
     </>
   );
 
@@ -29,15 +41,15 @@ export default function Scorecard({ game, owner, ownersByTeam }) {
         <div>{game.info.tvNetwork}</div>
       </div>
 
-      <Team
-        owner={owner}
+      <TeamRow
+        userSelectedOwner={userSelectedOwner}
         ownersByTeam={ownersByTeam}
         team={game.info.away}
         score={game.info.awayScore}
       />
 
-      <Team
-        owner={owner}
+      <TeamRow
+        userSelectedOwner={userSelectedOwner}
         ownersByTeam={ownersByTeam}
         team={game.info.home}
         score={game.info.homeScore}

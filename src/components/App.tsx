@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Header from './Header';
-import Scoreboard from './Scoreboard/Scoreboard';
+import ScoreboardSection from './Scoreboard/ScoreboardSection';
 import RankingsSection from './Rankings/RankingsSection';
 import Rooting from './Rooting/Rooting';
 import useRankings from '../hooks/useRankings';
@@ -19,8 +19,8 @@ function App() {
         setOwner={setUserSelectedOwner}
         rankings={rankings}
       />
-      <Scoreboard
-        owner={userSelectedOwner}
+      <ScoreboardSection
+        userSelectedOwner={userSelectedOwner}
         ownersByTeam={ownersByTeam}
         oLoading={oLoading}
       />

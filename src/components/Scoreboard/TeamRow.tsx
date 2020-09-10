@@ -1,7 +1,21 @@
 import React from 'react';
 import './Team.scss';
+import { OwnersByTeam } from '../../interfaces';
+import { Team } from '../../../srcBackend/classes/Team';
 
-export default function Team({ owner, ownersByTeam, team, score }) {
+interface TeamRowProps {
+  userSelectedOwner: string;
+  ownersByTeam: OwnersByTeam;
+  team: Team;
+  score: string;
+}
+
+export default function TeamRow({
+  userSelectedOwner,
+  ownersByTeam,
+  team,
+  score,
+}: TeamRowProps) {
   const espnLink = team.info.espnLink;
   const abbr = team.info.abbr;
   const fullName = team.info.fullName;
@@ -9,16 +23,17 @@ export default function Team({ owner, ownersByTeam, team, score }) {
   const winsOwner = ownersByTeam[abbr].wins;
   const lossesOwner = ownersByTeam[abbr].losses;
 
-  let winsOwnerHtml = '';
+  let winsOwnerHtml = <div></div>;
   if (winsOwner) {
-    const isActiveOwner = winsOwner.info.shortName === owner;
+    const isActiveOwner = winsOwner.info.shortName === userSelectedOwner;
+
     winsOwnerHtml = (
       <a
         href={`#${winsOwner.info.shortName}`}
         className="team__wins-owner"
         style={{
-          color: isActiveOwner && 'red',
-          fontWeight: isActiveOwner && 'bold',
+          color: isActiveOwner ? 'red' : undefined,
+          fontWeight: isActiveOwner ? 'bold' : 'normal',
         }}
       >
         W: {winsOwner.info.shortName}
@@ -26,16 +41,17 @@ export default function Team({ owner, ownersByTeam, team, score }) {
     );
   }
 
-  let lossesOwnerHtml = '';
+  let lossesOwnerHtml = <div></div>;
   if (lossesOwner) {
-    const isActiveOwner = lossesOwner.info.shortName === owner;
+    const isActiveOwner = lossesOwner.info.shortName === userSelectedOwner;
+
     lossesOwnerHtml = (
       <a
         href={`#${lossesOwner.info.shortName}`}
         className="team__losses-owner"
         style={{
-          color: isActiveOwner && 'red',
-          fontWeight: isActiveOwner && 'bold',
+          color: isActiveOwner ? 'red' : undefined,
+          fontWeight: isActiveOwner ? 'bold' : 'normal',
         }}
       >
         L: {lossesOwner.info.shortName}
