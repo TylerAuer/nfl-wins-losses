@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from './Header';
 import ScoreboardSection from './Scoreboard/ScoreboardSection';
 import RankingsSection from './Rankings/RankingsSection';
-import Rooting from './Rooting/Rooting';
+import RootingSection from './Rooting/RootingSection';
 import useRankings from '../hooks/useRankings';
 import useOwnersByTeam from '../hooks/useOwnersByTeam';
 import './App.scss';
@@ -29,7 +29,7 @@ function App() {
         rankings={rankings}
         userSelectedOwner={userSelectedOwner}
       />
-      {/* <Rooting ownersByTeam={ownersByTeam} oLoading={oLoading} /> */}
+      <RootingSection ownersByTeam={ownersByTeam} loading={oLoading} />
     </div>
   );
 }
