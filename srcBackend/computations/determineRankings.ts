@@ -1,8 +1,8 @@
-import { Owner, OwnerProps } from '../classes/Owner';
+import { Owner } from '../classes/Owner';
 
 interface Ranking {
   tieBreakers: number[];
-  owner: OwnerProps;
+  owner: Owner;
 }
 
 export default function determineRankings(owners: {
@@ -12,7 +12,7 @@ export default function determineRankings(owners: {
   const listOfOwners = Object.values(owners).map(
     (owner): Ranking => {
       return {
-        owner: owner.info,
+        owner: owner,
         tieBreakers: owner.tieBreakers,
       };
     }

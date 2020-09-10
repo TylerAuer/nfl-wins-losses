@@ -3,12 +3,12 @@ import { OwnersByTeam } from '../interfaces';
 import axios from 'axios';
 
 interface useOwnersByTeamReturn {
-  ownersByTeam: OwnersByTeam | null;
+  ownersByTeam: OwnersByTeam;
   loading: boolean;
 }
 
 export default function useOwnersByTeam(): useOwnersByTeamReturn {
-  const [ownersByTeam, setOwners] = useState(null);
+  const [ownersByTeam, setOwners] = useState({});
   const [loading, setLoading] = useState(true);
 
   const getOwners = async () => {

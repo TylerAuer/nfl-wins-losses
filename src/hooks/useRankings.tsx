@@ -3,12 +3,12 @@ import { Rankings } from '../interfaces';
 import axios from 'axios';
 
 interface useRankingsReturn {
-  rankings: Rankings | null;
+  rankings: Rankings;
   loading: boolean;
 }
 
-export default function useRankings() {
-  const [rankings, setRankings] = useState(null);
+export default function useRankings(): useRankingsReturn {
+  const [rankings, setRankings] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const getRankings = async () => {

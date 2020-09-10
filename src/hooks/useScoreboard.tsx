@@ -1,8 +1,17 @@
 import { useState, useEffect } from 'react';
+import { Scoreboard } from '../interfaces';
 import axios from 'axios';
 
-export default function useScoreboard() {
-  const [scoreboard, setScoreboard] = useState(null);
+interface useOwnersByTeamReturn {
+  scoreboard: Scoreboard;
+  loading: boolean;
+}
+
+export default function useScoreboard(): useOwnersByTeamReturn {
+  const [scoreboard, setScoreboard] = useState({
+    games: [],
+    week: 0,
+  });
   const [loading, setLoading] = useState(true);
 
   const getScores = async () => {
