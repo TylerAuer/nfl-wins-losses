@@ -1,21 +1,29 @@
 import { Owner } from '../classes/Owner';
-import { TeamAbbr } from '../enums';
+import { TeamAbbr, Division, Conference } from '../enums';
+import { Team } from '../classes/Team';
 
-interface TeamOwners {
+interface TeamOwnersAndLeagueInfo {
   wins: Owner | null;
   losses: Owner | null;
+  division: Division;
+  conference: Conference;
 }
 
-export default function determineOwnersByTeam(owners: {
-  [key: string]: Owner;
-}): { [key: string]: TeamOwners } {
-  const ownersByTeam: { [key: string]: TeamOwners } = {};
+export default function determineOwnersByTeam(
+  owners: {
+    [key: string]: Owner;
+  },
+  teams: Team[]
+): { [key: string]: TeamOwnersAndLeagueInfo } {
+  const ownersByTeam: { [key: string]: TeamOwnersAndLeagueInfo } = {};
   // Map each team abbreviation
 
   Object.keys(TeamAbbr).forEach((abbr: string) => {
-    const teamOwners: TeamOwners = {
+    const teamOwners: TeamOwnersAndLeagueInfo = {
       wins: null,
       losses: null,
+      division: teams[abbr].info.division,
+      conference: teams[abbr].info.conference,
     };
 
     Object.values(owners).forEach((owner: Owner) => {

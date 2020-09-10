@@ -3,7 +3,10 @@ import { Log } from '../Log';
 import determineOwnersByTeam from '../computations/determineOwnersByTeam';
 
 const sendOwners = (req: Request, res: Response): void => {
-  const ownersByTeam = determineOwnersByTeam(req.app.locals.owners);
+  const ownersByTeam = determineOwnersByTeam(
+    req.app.locals.owners,
+    req.app.locals.teams
+  );
   Log.compute('Owners');
 
   res.send(ownersByTeam);
