@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       <Header owner={owner} setOwner={setOwner} rankings={rankings} />
       <Scoreboard owner={owner} />
-      <Rankings loading={loading} rankings={rankings} />
+      <Rankings loading={loading} rankings={rankings} owner={owner} />
     </div>
   );
 }

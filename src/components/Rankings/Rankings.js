@@ -2,13 +2,15 @@ import React from 'react';
 import Owner from './Owner';
 import './Rankings.scss';
 
-export default function Rankings({ rankings, loading }) {
+export default function Rankings({ rankings, loading, owner }) {
+  let toggledOwner = owner;
+
   if (loading) {
     return <h2 className="section-header">Hang in there...loading data</h2>;
   }
 
   const ranks = rankings.map((owner, index) => (
-    <Owner key={index} rank={index} owner={owner} />
+    <Owner toggledOwner={toggledOwner} key={index} rank={index} owner={owner} />
   ));
 
   return (
