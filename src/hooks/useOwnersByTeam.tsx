@@ -1,7 +1,13 @@
 import { useState, useEffect } from 'react';
+import { OwnersByTeam } from '../interfaces';
 import axios from 'axios';
 
-export default function useOwnersByTeam() {
+interface useOwnersByTeamReturn {
+  ownersByTeam: OwnersByTeam | null;
+  loading: boolean;
+}
+
+export default function useOwnersByTeam(): useOwnersByTeamReturn {
   const [ownersByTeam, setOwners] = useState(null);
   const [loading, setLoading] = useState(true);
 
