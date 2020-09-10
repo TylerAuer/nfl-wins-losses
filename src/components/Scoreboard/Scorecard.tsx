@@ -2,8 +2,8 @@ import React from 'react';
 import { Game } from '../../../srcBackend/classes/Game';
 import { OwnersByTeam } from '../../interfaces';
 import TeamRow from './TeamRow';
-import prettyGameTime from '../../functions/prettyGameTime';
 import './Scorecard.scss';
+import GameTime from './GameTime';
 
 interface ScorecardProps {
   game: Game;
@@ -16,24 +16,6 @@ export default function Scorecard({
   userSelectedOwner,
   ownersByTeam,
 }: ScorecardProps) {
-  /////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////
-  // TODO: Extract status (for clock and quarter) to separate component
-  // since this will probably be fairly involved once I know the possibilities
-  // in the ESPN API
-  const activeStatus = (
-    <>
-      <div className="card__time">{game.info.clock}</div>
-      <div className="card__quarter">{`Q${game.info.quarter}`}</div>
-    </>
-  );
-
-  const inactiveStatus = (
-    <div className="card__date">{prettyGameTime(game.info.date)}</div>
-  );
-  /////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////
-
   return (
     <div className="card">
       <div className="card__header-row">
@@ -63,7 +45,7 @@ export default function Scorecard({
           </div>
         </div>
         <div className="card__status">
-          {game.info.quarter !== 0 ? activeStatus : inactiveStatus}
+          <GameTime game={game} />
         </div>
       </div>
     </div>
