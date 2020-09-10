@@ -17,7 +17,7 @@ export default function TeamCell({ pick, points }: TeamCellProps) {
       <a href={team.espnLink}>
         <img
           className={`team-cell__logo team-cell__logo--${type}`}
-          alt={'fd'}
+          alt={abbr}
           src={require(`../../logos/${abbr}.png`)}
         />
       </a>
