@@ -13,7 +13,7 @@ export default function determineOwnersByTeam(
   owners: {
     [key: string]: Owner;
   },
-  teams: Team[]
+  teams: { [key: string]: Team }
 ): { [key: string]: TeamOwnersAndLeagueInfo } {
   const ownersByTeam: { [key: string]: TeamOwnersAndLeagueInfo } = {};
   // Map each team abbreviation
