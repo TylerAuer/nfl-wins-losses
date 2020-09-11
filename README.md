@@ -6,7 +6,7 @@ The backend pulls data from ESPN APIs (with caching to limit requests) then proc
 
 I hacked together a version of this site a year ago when I was just learning JavaScript. Check out the <a href="https://github.com/TylerAuer/nfl-clientside">old source code</a> to see how far I've come in 10 months.
 
-[![Snapshot of site in Week 1](https://github.com/TylerAuer/nfl-wins-losses/master/snapshot-data.png)](https://nfl.tylerauer.com)
+[![Snapshot of site in Week 1](https://github.com/TylerAuer/nfl-wins-losses/blob/master/snapshot.png)](https://nfl.tylerauer.com)
 
 ## Technologies
 
