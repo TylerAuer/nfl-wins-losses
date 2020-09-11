@@ -17,9 +17,15 @@ export default function OwnerRowInRankings({
 }: OwnerProps) {
   const shortName = rankInfo.owner.info.shortName;
 
+  console.log(rankInfo);
   const cells = rankInfo.owner.info.draft.map((pick, i) => {
+    const tieBreakers = rankInfo.tieBreakers;
     return (
-      <TeamCell key={i} pick={pick} points={rankInfo.tieBreakers[i + 1]} />
+      <TeamCell
+        key={i}
+        pick={pick}
+        points={tieBreakers[tieBreakers.length - i - 2]}
+      />
     );
   });
 
