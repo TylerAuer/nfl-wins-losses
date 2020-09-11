@@ -9,7 +9,7 @@ A site to track an NFL league with family and friends.
 - Plan out bump chart, how to collect, store, and process the data
 - Add possession, down and distance, and yardline to active games
 - Sort active games in some logical way (toggledOwner's games on top, then active games)
-- 
+- Pull record from standings API when `build teams` is run in `/onStart`
 
 ## How the league works
 
