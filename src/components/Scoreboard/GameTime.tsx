@@ -19,13 +19,20 @@ export default function GameTime({ game }: GameTimeProps) {
     </>
   );
 
+  const halftime = <div className="card__date">Halftime</div>;
   const final = <div className="card__date">Final</div>;
 
   switch (game.info.state) {
     case 'pre':
       return pregame;
 
-    case 'active':
+    // game is IN progress
+    case 'in':
+      // HALFTIME
+      if (game.info.quarter === 2 && game.info.clock === '0:00') {
+        return halftime;
+      }
+      // Not halftime
       return active;
 
     case 'final':

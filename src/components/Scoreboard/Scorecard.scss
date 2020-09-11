@@ -56,4 +56,13 @@
       padding: 0 5px;
     }
   }
+
+  &__status {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__quarter {
+    margin-left: 1rem;
+  }
 }
