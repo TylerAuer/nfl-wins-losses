@@ -10,7 +10,7 @@ I hacked together a version of this site a year ago when I was just learning Jav
 
 ## Technologies
 
-The backend is build with [Express](https://expressjs.com/) and [TypeScript](https://www.typescriptlang.org/) which make calls to ESPN APIs and process the data into endpoints for a [React](https://reactjs.org/) frontend. The site is hosted with [Heroku](https://www.heroku.com/home). Which makes maintenance efficient -- pushes to `master` automatically create and deploy new builds.
+The backend is build with [Express](https://expressjs.com/) and [TypeScript](https://www.typescriptlang.org/) which make calls to ESPN APIs and process the data into endpoints for a [React](https://reactjs.org/) frontend. The site is hosted with [Heroku](https://www.heroku.com/home) which makes maintenance efficient -- pushes to `master` automatically create and deploy new builds.
 
 ## Feature Roadmap
 
