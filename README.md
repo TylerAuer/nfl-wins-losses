@@ -4,7 +4,7 @@ A site to track an NFL league with family and friends. Players draft teams to ea
 
 The backend pulls data from ESPN APIs (with caching to limit requests) then processes it into endpoints for a React frontend.
 
-I hacked together a version of this site a year ago when I was just learning JavaScript. Check out the <a href="https://github.com/TylerAuer/nfl-clientside">old source code</a> to see how far I've come in 10 months.
+I hacked together a version of this site a year ago when I was just learning JavaScript. Compare this repository to the <a href="https://github.com/TylerAuer/nfl-clientside">source code</a> from last year's app to see how far I've come in 10 months.
 
 [![Snapshot of site in Week 1](https://github.com/TylerAuer/nfl-wins-losses/blob/master/snapshot.png)](https://nfl.tylerauer.com)
 
@@ -16,7 +16,7 @@ The backend is build with [Express](https://expressjs.com/) and [TypeScript](htt
 
 - D3 Bump Chart tracking each player's ranking from week-to-week
 - Add possession, down and distance, and yardline to active games
-- Sort active games in some logical way (toggledOwner's games on top, then active games)
+- Sort active games in some logical way (user toggled owner's games on top, then active games...)
 - Rebrand of Who Are You Rooting Against?
 
 ## How the league works
