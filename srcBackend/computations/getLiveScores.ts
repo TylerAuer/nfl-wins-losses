@@ -29,6 +29,10 @@ interface EspnGameApiResponse {
       uid: string;
       homeAway: string;
       score: string;
+      records: {
+        name: string;
+        summary: string; // This is the team's record EX: "0-0"
+      }[];
       team: {
         abbreviation: string;
       };
@@ -71,16 +75,40 @@ export default function getLiveScores(teams: {
           line = odds[0].details;
           total = odds[0].overUnder;
         }
+        const awayTeam = game.competitions[0].competitors[1];
+        const homeTeam = game.competitions[0].competitors[0];
+
+        const awayAbbr = awayTeam.team.abbreviation;
+        const homeAbbr = homeTeam.team.abbreviation;
+
+        // Split record string (ex: "1-1") into an array ["1", "1"]
+        const awayTeamRecord = awayTeam.records[0].summary.split('-');
+        const homeTeamRecord = homeTeam.records[0].summary.split('-');
+
+        // Update each team's wins, losses and ties through classes
+        teams[awayAbbr].wins = parseInt(awayTeamRecord[0]);
+        teams[awayAbbr].losses = parseInt(awayTeamRecord[1]);
+        if (awayTeamRecord[2]) {
+          // If they have ties
+          teams[awayAbbr].ties = parseInt(awayTeamRecord[2]);
+        }
+        teams[homeAbbr].wins = parseInt(homeTeamRecord[0]);
+        teams[homeAbbr].losses = parseInt(homeTeamRecord[1]);
+        if (homeTeamRecord[2]) {
+          teams[homeAbbr].ties = parseInt(homeTeamRecord[2]);
+        }
+        console.log(homeTeamRecord, awayTeamRecord);
+        console.log(teams['KC']);
 
         const gameProps: GameProps = {
           id: game.id,
           date: new Date(game.date),
           state: game.status.type.state,
           isFinished: game.status.type.completed,
-          home: teams[game.competitions[0].competitors[0].team.abbreviation],
-          away: teams[game.competitions[0].competitors[1].team.abbreviation],
-          homeScore: game.competitions[0].competitors[0].score,
-          awayScore: game.competitions[0].competitors[1].score,
+          home: teams[homeAbbr],
+          away: teams[awayAbbr],
+          homeScore: homeTeam.score,
+          awayScore: awayTeam.score,
           line: line,
           total: total,
           quarter: game.status.period,

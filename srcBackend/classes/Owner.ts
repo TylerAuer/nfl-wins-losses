@@ -15,7 +15,7 @@ export class Owner {
 
   get currentScore(): number {
     // Total points based on wins or losses and matching pick type
-    return 0;
+    return this.info.draft.reduce((accum, curVal) => accum + curVal.points, 0);
   }
 
   get tieBreakers(): number[] {

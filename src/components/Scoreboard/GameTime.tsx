@@ -35,7 +35,7 @@ export default function GameTime({ game }: GameTimeProps) {
       // Not halftime
       return active;
 
-    case 'final':
+    case 'post':
       return final;
 
     default:
