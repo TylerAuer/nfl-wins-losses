@@ -25,7 +25,7 @@
   },
   "scripts": {
     "spin:server-watch": "tsc -w -p tsconfig.server.json",
-    "spin:server-start": "nodemon dist/index.js",
+    "spin:server-start": "nodemon -r dotenv/config dist/index.js",
     "spin": "run-p spin:*",
     "start": "react-scripts start",
     "build:empty": "rm -rf dist",
@@ -51,5 +51,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:4000"
+  "proxy": "http://localhost:8080"
 }

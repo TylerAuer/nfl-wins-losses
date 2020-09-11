@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import { Log } from './Log';
 import { buildTeams } from './onStart/buildTeams';
 import { buildPicks } from './onStart/buildPicks';
@@ -12,7 +12,23 @@ import sendBump from './routes/sendBump';
 //   CONFIGURE APP   ///////////////////////////////////////////////////////////
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 8080;
+
+////////////////////////////////////////////////////////////////////////////////
+//   INIT HTTPS FORWARDING//////////////////////////////////////////////////////
+
+const requireHTTPS = (req: Request, res: Response, next: NextFunction) => {
+  if (
+    !req.secure &&
+    // The 'x-forwarded-proto' check is for Heroku
+    req.get('x-forwarded-proto') !== 'https' &&
+    process.env.NODE_ENV !== 'development'
+  ) {
+    return res.redirect('https://' + req.get('host') + req.url);
+  }
+  next();
+};
+app.use(requireHTTPS);
 
 ////////////////////////////////////////////////////////////////////////////////
 //   GENERATE INITIAL DATA   ///////////////////////////////////////////////////
