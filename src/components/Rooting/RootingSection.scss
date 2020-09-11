@@ -1,4 +1,12 @@
 .rooting {
+  max-width: 130rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: 1260px) {
+    max-width: 80rem;
+  }
+
   &__conference {
     display: flex;
     flex-direction: row;

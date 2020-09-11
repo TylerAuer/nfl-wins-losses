@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  ConferenceDivisions,
-  OwnersByTeam,
-  TeamsByDivision,
-} from '../../interfaces';
+import { OwnersByTeam, TeamsByDivision } from '../../interfaces';
 import DivisionRooting from './DivisionRooting';
 import './RootingSection.scss';
 
@@ -43,9 +39,14 @@ export default function RootingSection({
     const conference = ownersByTeam[abbr].conference;
 
     teamsByDivision[conference][division].push(team);
-    teamsByDivision[conference][division].sort(
-      (a, b) => b.winCount - a.winCount
-    );
+    teamsByDivision[conference][division].sort((a, b) => {
+      const wins = b.winCount - a.winCount;
+      // If tied in wins, sort by losses
+      if (wins === 0) {
+        return a.lossCount - b.lossCount;
+      }
+      return wins;
+    });
   }
 
   const nfc = (

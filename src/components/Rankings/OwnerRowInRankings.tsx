@@ -16,6 +16,7 @@ export default function OwnerRowInRankings({
   userSelectedOwner,
 }: OwnerProps) {
   const shortName = rankInfo.owner.info.shortName;
+  const isOwnerSelected = userSelectedOwner === shortName;
 
   const cells = rankInfo.owner.info.draft.map((pick, i) => {
     const tieBreakers = rankInfo.tieBreakers;
@@ -29,17 +30,17 @@ export default function OwnerRowInRankings({
   });
 
   return (
-    <div id={shortName} className="owner">
+    <div
+      id={shortName}
+      className="owner"
+      style={{
+        borderColor: isOwnerSelected ? 'red' : undefined,
+        paddingTop: isOwnerSelected ? '4rem' : undefined,
+        paddingBottom: isOwnerSelected ? '4rem' : undefined,
+      }}
+    >
       <div className="owner__rank">{prettyRank(rank + 1)}</div>
-      <div
-        className="owner__name"
-        style={{
-          color: shortName === userSelectedOwner ? 'red' : undefined,
-          fontWeight: shortName === userSelectedOwner ? 'bold' : undefined,
-        }}
-      >
-        {shortName}
-      </div>
+      <div className="owner__name">{shortName}</div>
       <div className="owner__score">{rankInfo.tieBreakers[0]}</div>
       <div className="owner__teams">{cells}</div>
     </div>
