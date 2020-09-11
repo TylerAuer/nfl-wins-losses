@@ -37,7 +37,7 @@ As the season progresses, you get a point for each matching result. So, if the G
 - http://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard
 - http://site.api.espn.com/apis/site/v2/sports/football/nfl/teams?limit=100
 - https://site.api.espn.com/apis/v2/sports/football/nfl/standings
-- [PFR - all final (includes OT)](https://web.archive.org/web/20181022170146/https://www.pro-football-reference.com/boxscores/) - They plan to move this behind a paywall shortly
+- [PFR - Win Probability](https://www.pro-football-reference.com/play-index/win_prob.cgi) - They plan to move this behind a paywall shortly
 
 ## To Run Locally
 
