@@ -1,8 +1,9 @@
 import React from 'react';
-import { OwnersByTeam } from '../../interfaces';
-import TeamRooting from './TeamRooting';
+import { OwnersByTeam, TeamsByDivision } from '../../interfaces';
+import DivisionRooting from './DivisionRooting';
+import './RootingSection.scss';
 
-interface RootingSection {
+interface RootingSectionProps {
   ownersByTeam: OwnersByTeam;
   loading: boolean;
 }
@@ -10,27 +11,54 @@ interface RootingSection {
 export default function RootingSection({
   ownersByTeam,
   loading,
-}: RootingSection) {
+}: RootingSectionProps) {
   if (loading) {
     return <h2 className="section-header">Hang in there...loading data</h2>;
   }
 
-  const teamList = Object.keys(ownersByTeam);
-  teamList.sort();
+  const teamsByDivision: TeamsByDivision = {
+    AFC: {
+      EAST: [],
+      WEST: [],
+      SOUTH: [],
+      NORTH: [],
+    },
+    NFC: {
+      EAST: [],
+      WEST: [],
+      SOUTH: [],
+      NORTH: [],
+    },
+  };
 
-  const ListOfTeamRootings = teamList.map((abbr) => (
-    <TeamRooting
-      key={abbr}
-      winsOwner={ownersByTeam[abbr].wins}
-      lossesOwner={ownersByTeam[abbr].losses}
-      teamAbbr={abbr}
-    />
-  ));
+  // populate teamsByDivision
+  for (let abbr in ownersByTeam) {
+    const team = ownersByTeam[abbr];
+    team.abbr = abbr;
+    const division = ownersByTeam[abbr].division;
+    const conference = ownersByTeam[abbr].conference;
 
+    teamsByDivision[conference][division].push(team);
+  }
+
+  const nfc = (
+    <div className="rooting__conference">
+      {Object.entries(teamsByDivision.NFC).map(([division, teamList]) => {
+        console.log(teamList);
+        return (
+          <DivisionRooting
+            conference="NFC"
+            division={division}
+            teamList={teamList}
+          />
+        );
+      })}
+    </div>
+  );
   return (
     <section className="rooting">
       <h2 className="section-header">Who Are You Rooting Against?</h2>
-      {ListOfTeamRootings}
+      <div className="rooting__conference">{nfc}</div>
     </section>
   );
 }

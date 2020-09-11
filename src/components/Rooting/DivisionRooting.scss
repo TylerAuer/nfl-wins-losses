@@ -1,0 +1,10 @@
+.rooting {
+  &__division {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+  }
+  &__logo {
+    width: 3rem;
+  }
+}
