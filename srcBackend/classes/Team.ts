@@ -15,12 +15,13 @@ export interface TeamProps {
   conference: Conference;
   division: Division;
   byeWeek: number;
+
+  wins: number;
+  losses: number;
+  ties: number;
 }
 
 export class Team {
-  wins: number = 0;
-  losses: number = 0;
-  ties: number = 0;
   record: string = '';
 
   constructor(public info: TeamProps) {
@@ -30,10 +31,10 @@ export class Team {
   // Team's current record in '10 - 6' format or or '10 - 6 - 1' format if a
   // team has had a tie.
   makeRecordString(): void {
-    let str = `${this.wins} - ${this.losses}`;
+    let str = `${this.info.wins} - ${this.info.losses}`;
     // Only add ties to the record if the team has had a tie
-    if (this.ties > 0) {
-      str += ` - ${this.ties}`;
+    if (this.info.ties > 0) {
+      str += ` - ${this.info.ties}`;
     }
 
     this.record = str;

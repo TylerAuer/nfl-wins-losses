@@ -27,8 +27,8 @@ export default function determineOwnersByTeam(
       losses: null,
       division: teams[abbr].info.division,
       conference: teams[abbr].info.conference,
-      winCount: teams[abbr].wins,
-      lossCount: teams[abbr].losses,
+      winCount: teams[abbr].info.wins,
+      lossCount: teams[abbr].info.losses,
       espnLink: teams[abbr].info.espnLink,
     };
 

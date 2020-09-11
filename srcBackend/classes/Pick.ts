@@ -12,9 +12,9 @@ export class Pick {
 
   get points(): number {
     if (this.info.winsOrLosses === 'wins') {
-      return this.info.team.wins;
+      return this.info.team.info.wins;
     } else {
-      return this.info.team.losses;
+      return this.info.team.info.losses;
     }
   }
 }

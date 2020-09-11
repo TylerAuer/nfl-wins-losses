@@ -15,6 +15,11 @@ interface EspnTeamsApiResponse {
     location: string;
     color: string;
     alternateColor: string;
+    record: {
+      items: {
+        summary: string; // This is the record as a string (ex: "0-0")
+      }[];
+    };
   };
 }
 
@@ -29,6 +34,10 @@ export async function buildTeams(): Promise<{ [key: string]: Team }> {
   espnData.forEach((team: EspnTeamsApiResponse) => {
     const t = team.team;
     const abbr = t.abbreviation;
+    const record = t.record.items[0].summary.split('-');
+    const wins = record[0];
+    const losses = record[1];
+    const ties = record[2] || '0';
 
     teams[abbr] = new Team({
       espnId: parseInt(t.id),
@@ -43,6 +52,9 @@ export async function buildTeams(): Promise<{ [key: string]: Team }> {
       conference: staticTeamData[t.abbreviation].conference,
       division: staticTeamData[t.abbreviation].division,
       byeWeek: staticTeamData[t.abbreviation].byeWeek,
+      wins: parseInt(wins),
+      losses: parseInt(losses),
+      ties: parseInt(ties),
     });
   });
 

@@ -86,16 +86,16 @@ export default function getLiveScores(teams: {
         const homeTeamRecord = homeTeam.records[0].summary.split('-');
 
         // Update each team's wins, losses and ties through classes
-        teams[awayAbbr].wins = parseInt(awayTeamRecord[0]);
-        teams[awayAbbr].losses = parseInt(awayTeamRecord[1]);
+        teams[awayAbbr].info.wins = parseInt(awayTeamRecord[0]);
+        teams[awayAbbr].info.losses = parseInt(awayTeamRecord[1]);
         if (awayTeamRecord[2]) {
           // If they have ties
-          teams[awayAbbr].ties = parseInt(awayTeamRecord[2]);
+          teams[awayAbbr].info.ties = parseInt(awayTeamRecord[2]);
         }
-        teams[homeAbbr].wins = parseInt(homeTeamRecord[0]);
-        teams[homeAbbr].losses = parseInt(homeTeamRecord[1]);
+        teams[homeAbbr].info.wins = parseInt(homeTeamRecord[0]);
+        teams[homeAbbr].info.losses = parseInt(homeTeamRecord[1]);
         if (homeTeamRecord[2]) {
-          teams[homeAbbr].ties = parseInt(homeTeamRecord[2]);
+          teams[homeAbbr].info.ties = parseInt(homeTeamRecord[2]);
         }
 
         const gameProps: GameProps = {
