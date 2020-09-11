@@ -7,6 +7,9 @@ interface TeamOwnersAndLeagueInfo {
   losses: Owner | null;
   division: Division;
   conference: Conference;
+  winCount: number;
+  lossCount: number;
+  espnLink: string;
 }
 
 export default function determineOwnersByTeam(
@@ -24,6 +27,9 @@ export default function determineOwnersByTeam(
       losses: null,
       division: teams[abbr].info.division,
       conference: teams[abbr].info.conference,
+      winCount: teams[abbr].wins,
+      lossCount: teams[abbr].losses,
+      espnLink: teams[abbr].info.espnLink,
     };
 
     Object.values(owners).forEach((owner: Owner) => {

@@ -1,6 +1,4 @@
 .division {
-  display: flex;
-  flex-direction: column;
   border: 2px solid black;
   border-radius: 3px;
   margin: 1rem;
@@ -15,10 +13,17 @@
   }
 }
 
-.team {
+.div-team {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
+
+  &__logo {
+    width: 4rem;
+    margin: 0 1rem;
+    padding-top: 2px;
+  }
 
   &__owner {
     font-size: 1.8rem;
@@ -31,10 +36,5 @@
   }
   &__owner--losses {
     color: #aa0000;
-  }
-
-  &__logo {
-    width: 3rem;
-    margin: 0 0.75rem;
   }
 }

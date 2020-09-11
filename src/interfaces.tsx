@@ -8,6 +8,9 @@ export interface TeamOwners {
   division: Division;
   conference: Conference;
   abbr?: string;
+  winCount: number;
+  lossCount: number;
+  espnLink: string;
 }
 
 export interface OwnersByTeam {

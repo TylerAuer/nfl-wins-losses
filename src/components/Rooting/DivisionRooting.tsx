@@ -8,17 +8,27 @@ interface TeamInDivisionProps {
 
 function TeamInDivision({ team }: TeamInDivisionProps) {
   return (
-    <div className="team">
-      <div className="team__owner team__owner--wins">
-        {team.wins?.info.shortName}
+    <div className="div-team">
+      <div className="div-team__owner div-team__owner--wins">
+        {team.wins && (
+          <>
+            {team.wins.info.shortName} {team.winCount}
+          </>
+        )}
       </div>
-      <img
-        className={`team__logo`}
-        alt={team.abbr}
-        src={require(`../../logos/${team.abbr}.png`)}
-      />
-      <div className="team__owner team__owner--losses">
-        {team.losses?.info.shortName}
+      <a href={team.espnLink}>
+        <img
+          className={`div-team__logo`}
+          alt={team.abbr}
+          src={require(`../../logos/${team.abbr}.png`)}
+        />
+      </a>
+      <div className="div-team__owner div-team__owner--losses">
+        {team.losses && (
+          <>
+            {team.lossCount} {team.losses.info.shortName}
+          </>
+        )}
       </div>
     </div>
   );
