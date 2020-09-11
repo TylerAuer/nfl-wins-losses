@@ -40,8 +40,8 @@ export default function DivisionRooting({
       <div className="division__name">
         {conference} {division}
       </div>
-      {teamList.map((team) => (
-        <TeamInDivision team={team} />
+      {teamList.map((team, i) => (
+        <TeamInDivision key={i} team={team} />
       ))}
     </div>
   );

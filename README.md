@@ -2,6 +2,12 @@
 
 A site to track an NFL league with family and friends.
 
+## TODO
+
+- Use API calls for scoreboard to update each team's record
+- Rename and add records / points to Who Are You Rooting Against?
+- Plan out bump chart, how to collect, store, and process the data
+
 ## How the league works
 
 Before the season, everyone drafts teams for either their wins or their losses. For example, you might draft:

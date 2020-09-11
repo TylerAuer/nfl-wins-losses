@@ -43,31 +43,27 @@ export default function RootingSection({
 
   const nfc = (
     <div className="rooting__conference">
-      {Object.entries(teamsByDivision.NFC).map(([division, teamList]) => {
-        console.log(teamList);
-        return (
-          <DivisionRooting
-            conference="NFC"
-            division={division}
-            teamList={teamList}
-          />
-        );
-      })}
+      {Object.entries(teamsByDivision.NFC).map(([division, teamList]) => (
+        <DivisionRooting
+          key={`NFC-${division}`}
+          conference="NFC"
+          division={division}
+          teamList={teamList}
+        />
+      ))}
     </div>
   );
 
   const afc = (
     <div className="rooting__conference">
-      {Object.entries(teamsByDivision.AFC).map(([division, teamList]) => {
-        console.log(teamList);
-        return (
-          <DivisionRooting
-            conference="AFC"
-            division={division}
-            teamList={teamList}
-          />
-        );
-      })}
+      {Object.entries(teamsByDivision.AFC).map(([division, teamList]) => (
+        <DivisionRooting
+          conference="AFC"
+          key={`AFC-${division}`}
+          division={division}
+          teamList={teamList}
+        />
+      ))}
     </div>
   );
 
