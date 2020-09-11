@@ -97,8 +97,6 @@ export default function getLiveScores(teams: {
         if (homeTeamRecord[2]) {
           teams[homeAbbr].ties = parseInt(homeTeamRecord[2]);
         }
-        console.log(homeTeamRecord, awayTeamRecord);
-        console.log(teams['KC']);
 
         const gameProps: GameProps = {
           id: game.id,

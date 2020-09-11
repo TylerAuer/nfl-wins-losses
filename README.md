@@ -7,6 +7,9 @@ A site to track an NFL league with family and friends.
 - Use API calls for scoreboard to update each team's record
 - Rename and add records / points to Who Are You Rooting Against?
 - Plan out bump chart, how to collect, store, and process the data
+- Add possession, down and distance, and yardline to active games
+- Sort active games in some logical way (toggledOwner's games on top, then active games)
+- 
 
 ## How the league works
 

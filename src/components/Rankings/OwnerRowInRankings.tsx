@@ -17,7 +17,6 @@ export default function OwnerRowInRankings({
 }: OwnerProps) {
   const shortName = rankInfo.owner.info.shortName;
 
-  console.log(rankInfo);
   const cells = rankInfo.owner.info.draft.map((pick, i) => {
     const tieBreakers = rankInfo.tieBreakers;
     return (

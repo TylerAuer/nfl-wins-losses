@@ -58,5 +58,5 @@ app.get('/bump', sendBump);
 //   START SERVER   ////////////////////////////////////////////////////////////
 
 app.listen(port, () => {
-  console.log(`Spinning up app on port: ${port}`);
+  Log.init(`Spinning up app on port: ${port}`);
 });
