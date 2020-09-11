@@ -55,10 +55,27 @@ export default function RootingSection({
       })}
     </div>
   );
+
+  const afc = (
+    <div className="rooting__conference">
+      {Object.entries(teamsByDivision.AFC).map(([division, teamList]) => {
+        console.log(teamList);
+        return (
+          <DivisionRooting
+            conference="AFC"
+            division={division}
+            teamList={teamList}
+          />
+        );
+      })}
+    </div>
+  );
+
   return (
     <section className="rooting">
       <h2 className="section-header">Who Are You Rooting Against?</h2>
-      <div className="rooting__conference">{nfc}</div>
+      {nfc}
+      {afc}
     </section>
   );
 }

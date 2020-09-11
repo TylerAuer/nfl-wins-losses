@@ -8,16 +8,16 @@ interface TeamInDivisionProps {
 
 function TeamInDivision({ team }: TeamInDivisionProps) {
   return (
-    <div className="rooting__team">
+    <div className="team">
+      <div className="team__owner team__owner--wins">
+        {team.wins?.info.shortName}
+      </div>
       <img
-        className={`rooting__logo`}
+        className={`team__logo`}
         alt={team.abbr}
         src={require(`../../logos/${team.abbr}.png`)}
       />
-      <div className="rooting__owner rooting__owner--wins">
-        {team.wins?.info.shortName}
-      </div>
-      <div className="rooting__owner rooting__owner--losses">
+      <div className="team__owner team__owner--losses">
         {team.losses?.info.shortName}
       </div>
     </div>
