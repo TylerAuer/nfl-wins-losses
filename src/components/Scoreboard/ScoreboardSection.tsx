@@ -38,7 +38,7 @@ export default function ScoreboardSection({
       } else if (b.info.isFinished && !a.info.isFinished) {
         return -1;
       } else {
-        return 0;
+        return parseInt(b.info.id) - parseInt(a.info.id);
       }
     }
   });
