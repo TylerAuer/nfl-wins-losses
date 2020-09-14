@@ -26,6 +26,8 @@ export interface GameProps {
 
   stadium: string;
   tvNetwork: string;
+
+  winnerAbbr?: string; // team abbreviation
 }
 
 export class Game {

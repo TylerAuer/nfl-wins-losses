@@ -68,6 +68,7 @@ export default function getLiveScores(teams: {
       const games: EspnGameApiResponse[] = res.data.events;
 
       for (let game of games) {
+        // Process gambling information
         const odds = game.competitions[0].odds;
         let line = '';
         let total = 0;
@@ -75,6 +76,7 @@ export default function getLiveScores(teams: {
           line = odds[0].details;
           total = odds[0].overUnder;
         }
+
         const awayTeam = game.competitions[0].competitors[1];
         const homeTeam = game.competitions[0].competitors[0];
 
@@ -87,13 +89,15 @@ export default function getLiveScores(teams: {
 
         // Update each team's wins, losses and ties through classes
         teams[awayAbbr].info.wins = parseInt(awayTeamRecord[0]);
+        teams[homeAbbr].info.wins = parseInt(homeTeamRecord[0]);
+
         teams[awayAbbr].info.losses = parseInt(awayTeamRecord[1]);
+        teams[homeAbbr].info.losses = parseInt(homeTeamRecord[1]);
+
         if (awayTeamRecord[2]) {
           // If they have ties
           teams[awayAbbr].info.ties = parseInt(awayTeamRecord[2]);
         }
-        teams[homeAbbr].info.wins = parseInt(homeTeamRecord[0]);
-        teams[homeAbbr].info.losses = parseInt(homeTeamRecord[1]);
         if (homeTeamRecord[2]) {
           teams[homeAbbr].info.ties = parseInt(homeTeamRecord[2]);
         }
@@ -114,6 +118,18 @@ export default function getLiveScores(teams: {
           stadium: game.competitions[0].venue.fullName,
           tvNetwork: game.competitions[0].broadcasts[0].names[0],
         };
+
+        // Determine winner if game is finished
+        if (gameProps.isFinished) {
+          if (gameProps.homeScore === gameProps.awayScore) {
+            gameProps.winnerAbbr = 'tie';
+          } else if (gameProps.homeScore > gameProps.awayScore) {
+            gameProps.winnerAbbr = gameProps.home.info.abbr;
+          } else if (gameProps.awayScore > gameProps.homeScore) {
+            gameProps.winnerAbbr = gameProps.away.info.abbr;
+          }
+        }
+
         liveScores.games.push(new Game(gameProps));
       }
 
