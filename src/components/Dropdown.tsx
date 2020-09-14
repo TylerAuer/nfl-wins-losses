@@ -30,6 +30,13 @@ export default function Dropdown({ owner, setOwner, rankings }: Props) {
     setIsOpen(!isOpen);
   };
 
+  const onButtonClick = (): void => {
+    if (isOpen) {
+      setOwner('');
+    }
+    toggleMenu();
+  };
+
   const onOwnerClick = (owner: string): void => {
     toggleMenu();
     setOwner(owner);
@@ -39,7 +46,7 @@ export default function Dropdown({ owner, setOwner, rankings }: Props) {
     <menu className="dropdown">
       <Button
         className="dropdown__toggle"
-        onClick={toggleMenu}
+        onClick={onButtonClick}
         text={owner || 'Owner'}
       />
       {isOpen && <div className="dropdown__div">{ownerList}</div>}
