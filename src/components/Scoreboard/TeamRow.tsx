@@ -2,12 +2,14 @@ import React from 'react';
 import './Team.scss';
 import { OwnersByTeam } from '../../interfaces';
 import { Team } from '../../../srcBackend/classes/Team';
+import TeamOwner from './TeamOwner';
 
 interface TeamRowProps {
   userSelectedOwner: string;
   ownersByTeam: OwnersByTeam;
   team: Team;
   score: string;
+  winnerAbbr: string | null;
 }
 
 export default function TeamRow({
@@ -15,6 +17,7 @@ export default function TeamRow({
   ownersByTeam,
   team,
   score,
+  winnerAbbr,
 }: TeamRowProps) {
   const espnLink = team.info.espnLink;
   const abbr = team.info.abbr;
@@ -22,42 +25,8 @@ export default function TeamRow({
   const record = team.record;
   const winsOwner = ownersByTeam[abbr].wins;
   const lossesOwner = ownersByTeam[abbr].losses;
-
-  let winsOwnerHtml = <div></div>;
-  if (winsOwner) {
-    const isActiveOwner = winsOwner.info.shortName === userSelectedOwner;
-
-    winsOwnerHtml = (
-      <a
-        href={`#${winsOwner.info.shortName}`}
-        className="team__wins-owner"
-        style={{
-          color: isActiveOwner ? 'red' : undefined,
-          fontWeight: isActiveOwner ? 'bold' : 'normal',
-        }}
-      >
-        W: {winsOwner.info.shortName}
-      </a>
-    );
-  }
-
-  let lossesOwnerHtml = <div></div>;
-  if (lossesOwner) {
-    const isActiveOwner = lossesOwner.info.shortName === userSelectedOwner;
-
-    lossesOwnerHtml = (
-      <a
-        href={`#${lossesOwner.info.shortName}`}
-        className="team__losses-owner"
-        style={{
-          color: isActiveOwner ? 'red' : undefined,
-          fontWeight: isActiveOwner ? 'bold' : 'normal',
-        }}
-      >
-        L: {lossesOwner.info.shortName}
-      </a>
-    );
-  }
+  const isGameOver = !!winnerAbbr; // There is only a game winner if winnerAbbr is not null
+  const isWinner = isGameOver && winnerAbbr === abbr;
 
   return (
     <div className="team">
@@ -70,15 +39,43 @@ export default function TeamRow({
       </a>
       <div className="team__name-and-owners">
         <div className="team__team-name">
-          <a href={espnLink}>{fullName}</a>
+          <a
+            href={espnLink}
+            style={{
+              color: isWinner ? 'grey' : undefined,
+            }}
+          >
+            {fullName}
+          </a>
           <span className="team__record">{record}</span>
         </div>
         <div className="team__owners">
-          {winsOwnerHtml}
-          {lossesOwnerHtml}
+          <TeamOwner
+            earnedPoints={isGameOver && isWinner}
+            isUserSelectedOwner={
+              winsOwner?.info.shortName === userSelectedOwner
+            }
+            ownershipType="wins"
+            ownerShortName={winsOwner?.info.shortName}
+          />
+          <TeamOwner
+            earnedPoints={isGameOver && !isWinner}
+            isUserSelectedOwner={
+              lossesOwner?.info.shortName === userSelectedOwner
+            }
+            ownershipType="losses"
+            ownerShortName={lossesOwner?.info.shortName}
+          />
         </div>
       </div>
-      <div className="team__score">{score}</div>
+      <div
+        className="team__score"
+        style={{
+          color: isWinner ? 'grey' : undefined,
+        }}
+      >
+        {score}
+      </div>
     </div>
   );
 }
