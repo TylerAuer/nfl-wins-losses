@@ -1,8 +1,9 @@
 import React from 'react';
 import useScoreboard from '../../hooks/useScoreboard';
 import Scorecard from './Scorecard';
-import './Scoreboard.scss';
 import { OwnersByTeam } from '../../interfaces';
+import checkForOwnerInGame from '../../functions/checkForOwnerInGame';
+import './Scoreboard.scss';
 
 // TODO: Figure out how to sort the games in a reasonable way. Probably active
 // games first. If a user is selected, would be good to have their games first.
@@ -22,6 +23,25 @@ export default function ScoreboardSection({
   if (sLoading || oLoading) {
     return <h2 className="section-header">Hang in there...loading data</h2>;
   }
+
+  // Sort scorecard
+  scoreboard.games.sort((a, b) => {
+    const isAActive = checkForOwnerInGame(a, userSelectedOwner, ownersByTeam);
+    const isBActive = checkForOwnerInGame(b, userSelectedOwner, ownersByTeam);
+    if (isAActive && !isBActive) {
+      return -1;
+    } else if (isBActive && !isAActive) {
+      return 1;
+    } else {
+      if (a.info.isFinished && !b.info.isFinished) {
+        return 1;
+      } else if (b.info.isFinished && !a.info.isFinished) {
+        return -1;
+      } else {
+        return 0;
+      }
+    }
+  });
 
   const cards = scoreboard.games.map((game) => {
     return (

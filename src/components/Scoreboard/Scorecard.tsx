@@ -4,6 +4,7 @@ import { OwnersByTeam } from '../../interfaces';
 import TeamRow from './TeamRow';
 import GameTime from './GameTime';
 import * as CSS from 'csstype';
+import checkForOwnerInGame from '../../functions/checkForOwnerInGame';
 import './Scorecard.scss';
 
 interface ScorecardProps {
@@ -30,23 +31,15 @@ export default function Scorecard({
     borderRadius: '5px',
   };
 
-  // Get owners for each team
-  const awayWinsOwner =
-    ownersByTeam[game.info.away.info.abbr].wins?.info.shortName;
-  const awayLossesOwner =
-    ownersByTeam[game.info.away.info.abbr].losses?.info.shortName;
-  const homeWinsOwner =
-    ownersByTeam[game.info.home.info.abbr].wins?.info.shortName;
-  const homeLossesOwner =
-    ownersByTeam[game.info.home.info.abbr].losses?.info.shortName;
-
   let styleToUse = standardStyle;
-  if (
-    userSelectedOwner === awayWinsOwner ||
-    userSelectedOwner === awayLossesOwner ||
-    userSelectedOwner === homeWinsOwner ||
-    userSelectedOwner === homeLossesOwner
-  ) {
+
+  const gameHasUserSelectedOwner = checkForOwnerInGame(
+    game,
+    userSelectedOwner,
+    ownersByTeam
+  );
+
+  if (gameHasUserSelectedOwner) {
     styleToUse = userSelectedOwnerStyle;
   }
 
