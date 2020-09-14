@@ -61,11 +61,6 @@
     display: flex;
     flex-direction: row;
     justify-content: left;
-    color: var(--dim);
-
-    a {
-      color: var(--dim);
-    }
   }
 
   &__wins-owner {

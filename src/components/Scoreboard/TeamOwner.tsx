@@ -18,8 +18,8 @@ export default function TeamOwner({
     return null;
   }
 
-  const userSelectedStyle: CSS.Properties = {
-    fontWeight: 600,
+  const basicStyle: CSS.Properties = {
+    color: 'grey',
   };
 
   const winsEarnedPointStyle: CSS.Properties = {
@@ -33,10 +33,8 @@ export default function TeamOwner({
   };
 
   // Selects which style to apply
-  let activeStyle = null;
-  if (isUserSelectedOwner) {
-    activeStyle = userSelectedStyle;
-  } else if (earnedPoints && ownershipType === 'wins') {
+  let activeStyle = basicStyle;
+  if (earnedPoints && ownershipType === 'wins') {
     activeStyle = winsEarnedPointStyle;
   } else if (earnedPoints && ownershipType === 'losses') {
     activeStyle = lossesEarnedPointStyle;

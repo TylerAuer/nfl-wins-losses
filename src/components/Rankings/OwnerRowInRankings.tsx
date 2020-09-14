@@ -34,7 +34,7 @@ export default function OwnerRowInRankings({
       id={shortName}
       className="owner"
       style={{
-        borderColor: isOwnerSelected ? 'red' : undefined,
+        borderColor: isOwnerSelected ? '#ff00b7' : undefined,
         paddingTop: isOwnerSelected ? '4rem' : undefined,
         paddingBottom: isOwnerSelected ? '4rem' : undefined,
       }}
