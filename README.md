@@ -10,7 +10,7 @@ I hacked together a version of this site a year ago when I was just learning Jav
 
 ## Technologies
 
-The backend is build with [Express](https://expressjs.com/) and [TypeScript](https://www.typescriptlang.org/) which make calls to ESPN APIs and process the data into endpoints for a [React](https://reactjs.org/) frontend. The site is hosted with [Heroku](https://www.heroku.com/home). Which makes maintenance efficient -- pushes to `master` automatically create and deploy new builds.
+The backend is build with [Express](https://expressjs.com/) and [TypeScript](https://www.typescriptlang.org/) which make calls to ESPN APIs and process the data into endpoints for a [React](https://reactjs.org/) frontend. The site is hosted with [Heroku](https://www.heroku.com/home) which makes maintenance efficient -- pushes to `master` automatically create and deploy new builds.
 
 ## Feature Roadmap
 
@@ -37,7 +37,7 @@ As the season progresses, you get a point for each matching result. So, if the G
 - http://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard
 - http://site.api.espn.com/apis/site/v2/sports/football/nfl/teams?limit=100
 - https://site.api.espn.com/apis/v2/sports/football/nfl/standings
-- [PFR - all final (includes OT)](https://web.archive.org/web/20181022170146/https://www.pro-football-reference.com/boxscores/) - They plan to move this behind a paywall shortly
+- [PFR - Win Probability](https://www.pro-football-reference.com/play-index/win_prob.cgi) - They plan to move this behind a paywall shortly
 
 ## To Run Locally
 
