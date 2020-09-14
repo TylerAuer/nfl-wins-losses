@@ -28,6 +28,7 @@ export default function Scorecard({
         ownersByTeam={ownersByTeam}
         team={game.info.away}
         score={game.info.awayScore}
+        winnerAbbr={game.info.winnerAbbr || null}
       />
 
       <TeamRow
@@ -35,6 +36,7 @@ export default function Scorecard({
         ownersByTeam={ownersByTeam}
         team={game.info.home}
         score={game.info.homeScore}
+        winnerAbbr={game.info.winnerAbbr || null}
       />
 
       <div className="card__footer-row">

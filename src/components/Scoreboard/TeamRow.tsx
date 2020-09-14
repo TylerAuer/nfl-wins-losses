@@ -8,6 +8,7 @@ interface TeamRowProps {
   ownersByTeam: OwnersByTeam;
   team: Team;
   score: string;
+  winnerAbbr: string | null;
 }
 
 export default function TeamRow({
@@ -15,6 +16,7 @@ export default function TeamRow({
   ownersByTeam,
   team,
   score,
+  winnerAbbr,
 }: TeamRowProps) {
   const espnLink = team.info.espnLink;
   const abbr = team.info.abbr;
@@ -22,6 +24,7 @@ export default function TeamRow({
   const record = team.record;
   const winsOwner = ownersByTeam[abbr].wins;
   const lossesOwner = ownersByTeam[abbr].losses;
+  const isWinner = winnerAbbr && winnerAbbr === abbr;
 
   let winsOwnerHtml = <div></div>;
   if (winsOwner) {
@@ -70,7 +73,14 @@ export default function TeamRow({
       </a>
       <div className="team__name-and-owners">
         <div className="team__team-name">
-          <a href={espnLink}>{fullName}</a>
+          <a
+            href={espnLink}
+            style={{
+              color: isWinner ? 'grey' : undefined,
+            }}
+          >
+            {fullName}
+          </a>
           <span className="team__record">{record}</span>
         </div>
         <div className="team__owners">
@@ -78,7 +88,14 @@ export default function TeamRow({
           {lossesOwnerHtml}
         </div>
       </div>
-      <div className="team__score">{score}</div>
+      <div
+        className="team__score"
+        style={{
+          color: isWinner ? 'grey' : undefined,
+        }}
+      >
+        {score}
+      </div>
     </div>
   );
 }
