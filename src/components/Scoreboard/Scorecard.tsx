@@ -26,7 +26,7 @@ export default function Scorecard({
   };
 
   const userSelectedOwnerStyle: CSS.Properties = {
-    border: '3px solid #ff00b7',
+    border: '3px solid #23008c',
     boxShadow: '2px 2px 8px rgba(0, 0, 0, 0.2)',
     borderRadius: '5px',
   };
