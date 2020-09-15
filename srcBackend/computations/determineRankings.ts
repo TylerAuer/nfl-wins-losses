@@ -3,6 +3,7 @@ import { Owner } from '../classes/Owner';
 interface Ranking {
   tieBreakers: number[];
   owner: Owner;
+  currentRank: number;
 }
 
 export default function determineRankings(owners: {
@@ -14,6 +15,7 @@ export default function determineRankings(owners: {
       return {
         owner: owner,
         tieBreakers: owner.tieBreakers,
+        currentRank: 0,
       };
     }
   );
@@ -29,6 +31,10 @@ export default function determineRankings(owners: {
     }
     return b.tieBreakers[i] > a.tieBreakers[i] ? 1 : -1;
   });
+
+  for (let i = 0; i < listOfOwners.length; i++) {
+    listOfOwners[i].currentRank = i + 1;
+  }
 
   return listOfOwners;
 }
