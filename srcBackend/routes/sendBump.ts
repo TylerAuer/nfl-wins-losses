@@ -36,7 +36,8 @@ const sendBump = (req: Request, res: Response): void => {
 
       const rankHistory = {};
       ownerRow.slice(1).forEach((rank, index) => {
-        rankHistory[index.toString()] = parseInt(rank);
+        let key = index === 0 ? 'Pre' : `Wk ${index}`;
+        rankHistory[key] = parseInt(rank);
       });
 
       console.log(currentRankings);
@@ -44,7 +45,7 @@ const sendBump = (req: Request, res: Response): void => {
       // Look up the owner's current ranking
       currentRankings.forEach((rank) => {
         if (rank.owner.info.shortName === ownerShortName) {
-          rankHistory['current'] = rank.currentRank;
+          rankHistory['Live'] = rank.currentRank;
         }
       });
 

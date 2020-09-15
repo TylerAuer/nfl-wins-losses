@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import drawBumpChart from './drawBumpChart';
+import './BumpChart.scss';
 
 export default function BumpChartSection() {
   useEffect(() => {
