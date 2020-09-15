@@ -8,8 +8,7 @@ type OwnerRow = string[];
 
 interface BumpData {
   [key: string]: {
-    currentRank: number;
-    rankHistory: number[];
+    [key: string]: number; // key is the week number as string
   };
 }
 
@@ -18,32 +17,38 @@ const sendBump = (req: Request, res: Response): void => {
     res.send('CACHE:' + cache.get('bump'));
     Log.send('Bump Chart Data');
   } else {
-    // bump data is not cached
-    // so, generate it, send it, and cache it
+    // bump data is not cached so, generate it, send it, and cache it
+    const bumpData: BumpData = {};
+
+    // Get old rankings from CSV file
+    // These rankings can't be generated from any of the API information
     const csv = new CsvReader('rankingsByWeek.csv');
     csv.read();
     const csvRankings = csv.data.slice(1); // slice removes header row
 
-    const bumpData: BumpData = {};
-
+    // Includes the current ranking which updates as games end and
+    // ESPN APIs are updated
     const currentRankings = determineRankings(req.app.locals.owners);
 
     csvRankings.forEach((ownerRow: OwnerRow) => {
+      // Get Owner name from row 1 of CSV file
       const ownerShortName = ownerRow[0];
 
-      let ownersRankHistory = {
-        currentRank: 0,
-        rankHistory: ownerRow.slice(1).map((str) => parseInt(str)),
-      };
+      const rankHistory = {};
+      ownerRow.slice(1).forEach((rank, index) => {
+        rankHistory[index.toString()] = parseInt(rank);
+      });
 
+      console.log(currentRankings);
+
+      // Look up the owner's current ranking
       currentRankings.forEach((rank) => {
         if (rank.owner.info.shortName === ownerShortName) {
-          ownersRankHistory.currentRank = rank.currentRank;
-          ownersRankHistory.rankHistory.push(rank.currentRank);
+          rankHistory['current'] = rank.currentRank;
         }
       });
 
-      bumpData[ownerShortName] = ownersRankHistory;
+      bumpData[ownerShortName] = rankHistory;
     });
 
     res.send(bumpData);

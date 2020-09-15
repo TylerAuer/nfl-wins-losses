@@ -3,6 +3,7 @@ import Header from './Header';
 import ScoreboardSection from './Scoreboard/ScoreboardSection';
 import RankingsSection from './Rankings/RankingsSection';
 import RootingSection from './Rooting/RootingSection';
+import BumpChartSection from './BumpChart/BumpChartSection';
 import useRankings from '../hooks/useRankings';
 import useOwnersByTeam from '../hooks/useOwnersByTeam';
 import './App.scss';
@@ -30,6 +31,7 @@ function App() {
         userSelectedOwner={userSelectedOwner}
       />
       <RootingSection ownersByTeam={ownersByTeam} loading={oLoading} />
+      <BumpChartSection />
     </div>
   );
 }
