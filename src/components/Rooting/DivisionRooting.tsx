@@ -10,10 +10,12 @@ function TeamInDivision({ team }: TeamInDivisionProps) {
   return (
     <div className="div-team">
       <div className="div-team__owner div-team__owner--wins">
-        {team.wins && (
+        {team.wins ? (
           <>
             {team.wins.info.shortName} {team.winCount}
           </>
+        ) : (
+          <>{team.winCount}</>
         )}
       </div>
       <a href={team.espnLink}>
@@ -24,10 +26,12 @@ function TeamInDivision({ team }: TeamInDivisionProps) {
         />
       </a>
       <div className="div-team__owner div-team__owner--losses">
-        {team.losses && (
+        {team.losses ? (
           <>
-            {team.lossCount} {team.losses.info.shortName}
+            {team.losses.info.shortName} {team.lossCount}
           </>
+        ) : (
+          <>{team.lossCount}</>
         )}
       </div>
     </div>
