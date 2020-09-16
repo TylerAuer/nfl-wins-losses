@@ -6,15 +6,17 @@ import determineRankings from '../computations/determineRankings';
 
 type OwnerRow = string[];
 
-interface BumpData {
-  [key: string]: {
-    [key: string]: number; // key is the week number as string
-  };
-}
+type OwnerRankingsByWeek = {
+  [key: string]: number;
+};
+
+type BumpData = {
+  [key: string]: OwnerRankingsByWeek;
+};
 
 const sendBump = (req: Request, res: Response): void => {
   if (cache.has('bump')) {
-    res.send('CACHE:' + cache.get('bump'));
+    res.send(cache.get('bump'));
     Log.send('Bump Chart Data');
   } else {
     // bump data is not cached so, generate it, send it, and cache it
@@ -34,13 +36,11 @@ const sendBump = (req: Request, res: Response): void => {
       // Get Owner name from row 1 of CSV file
       const ownerShortName = ownerRow[0];
 
-      const rankHistory = {};
+      const rankHistory: OwnerRankingsByWeek = {};
       ownerRow.slice(1).forEach((rank, index) => {
         let key = index === 0 ? 'Pre' : `Wk ${index}`;
         rankHistory[key] = parseInt(rank);
       });
-
-      console.log(currentRankings);
 
       // Look up the owner's current ranking
       currentRankings.forEach((rank) => {
@@ -55,8 +55,8 @@ const sendBump = (req: Request, res: Response): void => {
     res.send(bumpData);
     Log.send('Bump Chart Data');
 
-    // cache.set('bump', previousWeeks);
-    // Log.cache('Bump Chart Data');
+    cache.set('bump', bumpData);
+    Log.cache('Bump Chart Data');
   }
 };
 
