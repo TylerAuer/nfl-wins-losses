@@ -20,6 +20,10 @@ export default function useOwnersByTeam(): useOwnersByTeamReturn {
   // Run when the component first mounts
   useEffect(() => {
     getOwners();
+
+    setInterval(() => {
+      getOwners();
+    }, 30 * 1000);
   }, []);
 
   return { ownersByTeam, loading };
