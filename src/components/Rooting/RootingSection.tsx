@@ -77,7 +77,7 @@ export default function RootingSection({
 
   return (
     <section className="rooting">
-      <h2 className="section-header">Who Are You Rooting Against?</h2>
+      <h2 className="section-header">Owners By Division</h2>
       {nfc}
       {afc}
     </section>
