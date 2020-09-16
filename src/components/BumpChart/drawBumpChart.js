@@ -9,14 +9,23 @@ export default async function drawBumpChart(data, target) {
   const listOfWeeks = Object.keys(data[owners[0]]);
 
   // fraction of bar that should be horizontal
-  const widthOfHorizontalSegments = 0.7;
+  let widthOfHorizontalSegments;
+  if (listOfWeeks.length <= 4) {
+    widthOfHorizontalSegments = 0.7;
+  } else if (listOfWeeks.length <= 8) {
+    widthOfHorizontalSegments = 0.6;
+  } else if (listOfWeeks.length <= 12) {
+    widthOfHorizontalSegments = 0.5;
+  } else {
+    widthOfHorizontalSegments = 0.4;
+  }
 
   // set the dimensions and margins of the graph
-  const widthWithMargins = 1000;
+  const widthWithMargins = 900;
   const heightWithMargins = 500;
   const margin = {
-    left: 70,
-    right: 50,
+    left: 0,
+    right: 0,
     top: 20,
     bottom: 50,
   };
@@ -39,14 +48,20 @@ export default async function drawBumpChart(data, target) {
   const y = d3.scaleLinear().domain([1, owners.length]).range([0, height]);
 
   // Axes
-  const xAxis = d3.axisBottom(x).tickSize(0);
+  const xAxis = d3.axisBottom(x).tickSize(height + 15);
   svg
     .append('g')
-    .attr('transform', `translate(0, ${height + margin.bottom / 3})`)
+    .attr('transform', `translate(0, 0)`)
     .call(xAxis)
     .call((g) => g.select('.domain').remove())
     .selectAll('text')
     .style('text-anchor', 'middle');
+
+  svg
+    .selectAll('line')
+    .attr('stroke', 'lightgray')
+    .attr('stroke-width', '1')
+    .attr('stroke-dasharray', '1 2');
 
   // Add bars and background white borders for each owner
   owners.forEach((owner) => {
@@ -64,7 +79,6 @@ export default async function drawBumpChart(data, target) {
       .attr('x2', (d) => x(d[0]) - xClip / 2)
       .attr('y1', (d) => y(d[1]))
       .attr('y2', (d, i) => {
-        if (owner === 'Amy') console.log(d, rankings[i + 1]);
         if (rankings[i + 1]) {
           return y(rankings[i + 1][1]);
         } else {
@@ -73,7 +87,7 @@ export default async function drawBumpChart(data, target) {
       })
       .attr('stroke', 'white')
       .attr('stroke-linecap', 'round')
-      .attr('stroke-width', '12');
+      .attr('stroke-width', '15');
 
     // Add grey diagonal lines
     svg
@@ -86,7 +100,6 @@ export default async function drawBumpChart(data, target) {
       .attr('x2', (d) => x(d[0]) - xClip / 2)
       .attr('y1', (d) => y(d[1]))
       .attr('y2', (d, i) => {
-        if (owner === 'Amy') console.log(d, rankings[i + 1]);
         if (rankings[i + 1]) {
           return y(rankings[i + 1][1]);
         } else {
@@ -113,58 +126,35 @@ export default async function drawBumpChart(data, target) {
       .attr('stroke-width', '8');
   });
 
-  // Add name labels to left side
-  svg
-    .selectAll('left-labels')
-    .data(Object.entries(data))
-    .enter()
-    .append('text')
-    .attr('color', 'black')
-    .attr('x', x('Live') + xClip / 2 - 10)
-    .attr('y', (d) => y(d[1].Live))
-    .text((d) => d[0])
-    .attr('font-size', '12px')
-    .attr('text-anchor', 'end')
-    .attr('alignment-baseline', 'middle');
-
-  // Add name labels to right side
-  svg
-    .selectAll('right-labels')
-    .data(Object.entries(data))
-    .enter()
-    .append('text')
-    .attr('color', 'black')
-    .attr('x', x('Pre') + x.bandwidth() - xClip / 2 + 10)
-    .attr('y', (d) => y(d[1].Pre))
-    .text((d) => `${d[0]}`)
-    .attr('font-size', '12px')
-    .attr('text-anchor', 'start')
-    .attr('alignment-baseline', 'middle');
-
-  // Add background rectangles for ranks
-  svg
-    .selectAll('rank-bg')
-    .data(Object.entries(data))
-    .enter()
-    .append('line')
-    .attr('x1', x('Live') + xClip - 25)
-    .attr('x2', x('Live') + xClip + 5)
-    .attr('y1', (d) => y(d[1].Live))
-    .attr('y2', (d) => y(d[1].Live))
-    .attr('stroke', 'white')
-    .attr('stroke-width', '12');
-
-  // Add Rank Label to left side
+  // Add Rank and Name Label to left side
   svg
     .selectAll('rank-text')
     .data(Object.entries(data))
     .enter()
     .append('text')
+    .attr('class', `bump__label`)
     .attr('color', 'black')
-    .attr('x', x('Live') + xClip - 10)
+    .attr('x', x('Live') + xClip / 2)
     .attr('y', (d) => y(d[1].Live))
-    .text((d) => prettyRank(d[1].Live))
+    .attr('dy', '-10')
+    .text((d) => `${prettyRank(d[1].Live)} - ${d[0]}`)
     .attr('font-size', '12px')
-    .attr('text-anchor', 'middle')
+    .attr('text-anchor', 'start')
+    .attr('alignment-baseline', 'middle');
+
+  // Add Name Labels to right side
+  svg
+    .selectAll('right-labels')
+    .data(Object.entries(data))
+    .enter()
+    .append('text')
+    .attr('class', `bump__label`)
+    .attr('color', 'black')
+    .attr('x', x('Pre') + x.bandwidth() - xClip / 2)
+    .attr('y', (d) => y(d[1].Pre))
+    .attr('dy', '-12')
+    .text((d) => `${d[0]}`)
+    .attr('font-size', '12px')
+    .attr('text-anchor', 'end')
     .attr('alignment-baseline', 'middle');
 }

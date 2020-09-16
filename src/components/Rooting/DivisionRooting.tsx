@@ -28,7 +28,7 @@ function TeamInDivision({ team }: TeamInDivisionProps) {
       <div className="div-team__owner div-team__owner--losses">
         {team.losses ? (
           <>
-            {team.losses.info.shortName} {team.lossCount}
+            {team.lossCount} {team.losses.info.shortName}
           </>
         ) : (
           <>{team.lossCount}</>
