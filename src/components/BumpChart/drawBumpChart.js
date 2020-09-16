@@ -55,7 +55,7 @@ export default async function drawBumpChart(data, target) {
 
     // Add diagonal backgrounds for weave effect
     svg
-      .selectAll(`${owner}-diagonal-lines`)
+      .selectAll(`${owner}-diagonal-bg`)
       .data(rankings.slice(0, rankings.length - 1))
       .enter()
       .append('line')
@@ -81,7 +81,7 @@ export default async function drawBumpChart(data, target) {
       .data(rankings.slice(0, rankings.length - 1))
       .enter()
       .append('line')
-      .attr('class', `${owner} diagonal__bg`)
+      .attr('class', `${owner} diagonal__lines`)
       .attr('x1', (d) => x(d[0]) + xClip / 2)
       .attr('x2', (d) => x(d[0]) - xClip / 2)
       .attr('y1', (d) => y(d[1]))
