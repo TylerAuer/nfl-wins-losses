@@ -1,8 +1,10 @@
 import * as d3 from 'd3';
 import prettyRank from '../../functions/prettyRank';
 
-export default async function drawBumpChart(target) {
-  const data = await d3.json('/bump');
+export default async function drawBumpChart(data, target) {
+  const oldBumpChart = document.getElementById(target.slice(1));
+  oldBumpChart.innerHTML = '';
+
   const owners = Object.keys(data);
   const listOfWeeks = Object.keys(data[owners[0]]);
 
@@ -15,7 +17,7 @@ export default async function drawBumpChart(target) {
   const margin = {
     left: 70,
     right: 50,
-    top: 50,
+    top: 20,
     bottom: 50,
   };
   const width = widthWithMargins - margin.left - margin.right;
@@ -28,7 +30,7 @@ export default async function drawBumpChart(target) {
     .attr('preserveAspectRatio', 'xMinYMin meet')
     .attr('viewBox', `0 0 ${widthWithMargins} ${heightWithMargins}`)
     .append('g')
-    .attr('transform', `translate(${margin.left}, ${margin.right})`);
+    .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
   // Scales
   const x = d3.scaleBand().domain(listOfWeeks.reverse()).range([0, width]);
@@ -40,16 +42,13 @@ export default async function drawBumpChart(target) {
   const xAxis = d3.axisBottom(x).tickSize(0);
   svg
     .append('g')
-    .attr(
-      'transform',
-      `translate(0, ${heightWithMargins - 1.75 * margin.bottom})`
-    )
+    .attr('transform', `translate(0, ${height + margin.bottom / 3})`)
     .call(xAxis)
     .call((g) => g.select('.domain').remove())
     .selectAll('text')
     .style('text-anchor', 'middle');
 
-  // Test by putting points on each spot
+  // Add bars and background white borders for each owner
   owners.forEach((owner) => {
     // outputs => [week, ranking]
     const rankings = Object.entries(data[owner]);
@@ -112,17 +111,6 @@ export default async function drawBumpChart(target) {
       .attr('stroke', 'grey')
       .attr('stroke-linecap', 'round')
       .attr('stroke-width', '8');
-
-    // Add points
-    // svg
-    //   .selectAll(`${owner}-points`)
-    //   .data(rankings)
-    //   .enter()
-    //   .append('circle')
-    //   .attr('fill', 'black')
-    //   .attr('r', '2')
-    //   .attr('cx', (d) => x(d[0]) + x.bandwidth() / 2)
-    //   .attr('cy', (d) => y(d[1]));
   });
 
   // Add name labels to left side
@@ -134,7 +122,7 @@ export default async function drawBumpChart(target) {
     .attr('color', 'black')
     .attr('x', x('Live') + xClip / 2 - 10)
     .attr('y', (d) => y(d[1].Live))
-    .text((d) => `${d[0]} (${prettyRank(d[1].Live)})`)
+    .text((d) => d[0])
     .attr('font-size', '12px')
     .attr('text-anchor', 'end')
     .attr('alignment-baseline', 'middle');
@@ -151,5 +139,32 @@ export default async function drawBumpChart(target) {
     .text((d) => `${d[0]}`)
     .attr('font-size', '12px')
     .attr('text-anchor', 'start')
+    .attr('alignment-baseline', 'middle');
+
+  // Add background rectangles for ranks
+  svg
+    .selectAll('left-labels')
+    .data(Object.entries(data))
+    .enter()
+    .append('line')
+    .attr('x1', x('Live') + xClip - 20)
+    .attr('x2', x('Live') + xClip + 10)
+    .attr('y1', (d) => y(d[1].Live))
+    .attr('y2', (d) => y(d[1].Live))
+    .attr('stroke', 'white')
+    .attr('stroke-width', '12');
+
+  // Add Rank Label to left side
+  svg
+    .selectAll('left-labels')
+    .data(Object.entries(data))
+    .enter()
+    .append('text')
+    .attr('color', 'black')
+    .attr('x', x('Live') + xClip - 5)
+    .attr('y', (d) => y(d[1].Live))
+    .text((d) => prettyRank(d[1].Live))
+    .attr('font-size', '12px')
+    .attr('text-anchor', 'middle')
     .attr('alignment-baseline', 'middle');
 }
