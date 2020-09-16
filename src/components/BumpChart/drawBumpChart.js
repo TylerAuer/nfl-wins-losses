@@ -143,12 +143,12 @@ export default async function drawBumpChart(data, target) {
 
   // Add background rectangles for ranks
   svg
-    .selectAll('left-labels')
+    .selectAll('rank-bg')
     .data(Object.entries(data))
     .enter()
     .append('line')
-    .attr('x1', x('Live') + xClip - 20)
-    .attr('x2', x('Live') + xClip + 10)
+    .attr('x1', x('Live') + xClip - 25)
+    .attr('x2', x('Live') + xClip + 5)
     .attr('y1', (d) => y(d[1].Live))
     .attr('y2', (d) => y(d[1].Live))
     .attr('stroke', 'white')
@@ -156,12 +156,12 @@ export default async function drawBumpChart(data, target) {
 
   // Add Rank Label to left side
   svg
-    .selectAll('left-labels')
+    .selectAll('rank-text')
     .data(Object.entries(data))
     .enter()
     .append('text')
     .attr('color', 'black')
-    .attr('x', x('Live') + xClip - 5)
+    .attr('x', x('Live') + xClip - 10)
     .attr('y', (d) => y(d[1].Live))
     .text((d) => prettyRank(d[1].Live))
     .attr('font-size', '12px')
