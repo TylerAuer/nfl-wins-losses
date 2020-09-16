@@ -47,6 +47,11 @@ export default async function drawBumpChart(data, target) {
 
   const y = d3.scaleLinear().domain([1, owners.length]).range([0, height]);
 
+  const color = d3
+    .scaleLinear()
+    .domain([1, owners.length])
+    .range(['slategrey', 'linen']);
+
   // Axes
   const xAxis = d3.axisBottom(x).tickSize(height + 15);
   svg
@@ -59,9 +64,9 @@ export default async function drawBumpChart(data, target) {
 
   svg
     .selectAll('line')
-    .attr('stroke', 'lightgray')
+    .attr('stroke', 'lightsteelblue')
     .attr('stroke-width', '1')
-    .attr('stroke-dasharray', '1 2');
+    .attr('stroke-dasharray', '6 4');
 
   // Add bars and background white borders for each owner
   owners.forEach((owner) => {
@@ -106,7 +111,7 @@ export default async function drawBumpChart(data, target) {
           return y(d[1]);
         }
       })
-      .attr('stroke', 'grey')
+      .attr('stroke', (d) => color(rankings[rankings.length - 1][1]))
       .attr('stroke-linecap', 'round')
       .attr('stroke-width', '8');
 
@@ -121,7 +126,7 @@ export default async function drawBumpChart(data, target) {
       .attr('x2', (d) => x(d[0]) + x.bandwidth() - xClip / 2)
       .attr('y1', (d) => y(d[1]))
       .attr('y2', (d) => y(d[1]))
-      .attr('stroke', 'grey')
+      .attr('stroke', (d) => color(rankings[rankings.length - 1][1]))
       .attr('stroke-linecap', 'round')
       .attr('stroke-width', '8');
   });
