@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import useOnClickOutside from 'use-onclickoutside';
 import { Rankings } from '../interfaces';
 import Button from './Button';
 import './Dropdown.scss';
@@ -11,6 +12,7 @@ interface Props {
 
 export default function Dropdown({ owner, setOwner, rankings }: Props) {
   const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef(null);
 
   // Use rankings to generate a list of owners for dropdown
   let ownerList = rankings.map((person) => {
@@ -42,26 +44,18 @@ export default function Dropdown({ owner, setOwner, rankings }: Props) {
     setOwner(owner);
   };
 
-  if (isOpen) {
-    return (
-      <menu className="dropdown">
+  useOnClickOutside(ref, () => setIsOpen(false));
+
+  return (
+    <menu className="dropdown">
+      <div ref={ref}>
         <Button
-          className="dropdown__toggle dropdown__toggle--open"
+          className={`dropdown__toggle ${isOpen && 'dropdown__toggle--open'}`}
           onClick={onButtonClick}
-          text="&#10005;"
+          text={isOpen ? '✕' : owner || 'Owner'}
         />
         {isOpen && <div className="dropdown__div">{ownerList}</div>}
-      </menu>
-    );
-  } else {
-    return (
-      <menu className="dropdown">
-        <Button
-          className="dropdown__toggle"
-          onClick={onButtonClick}
-          text={owner || 'Owner'}
-        />
-      </menu>
-    );
-  }
+      </div>
+    </menu>
+  );
 }

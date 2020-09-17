@@ -24,7 +24,8 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
     "ts-node": "^9.0.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "use-onclickoutside": "^0.3.1"
   },
   "scripts": {
     "spin:server-watch": "tsc -w -p tsconfig.server.json",
