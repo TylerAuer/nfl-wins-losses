@@ -2,7 +2,7 @@ import { Team } from './Team';
 
 export interface GameProps {
   id: string;
-  date: Date;
+  date: string;
 
   state: string;
   isFinished: boolean;

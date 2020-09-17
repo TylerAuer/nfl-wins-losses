@@ -104,7 +104,7 @@ export default function getLiveScores(teams: {
 
         const gameProps: GameProps = {
           id: game.id,
-          date: new Date(game.date),
+          date: game.date,
           state: game.status.type.state,
           isFinished: game.status.type.completed,
           home: teams[homeAbbr],

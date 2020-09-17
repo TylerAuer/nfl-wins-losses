@@ -1,4 +1,4 @@
-const prettyGameTime = (date: Date): string => {
+const prettyGameTime = (date: string): string => {
   const daysOfWeek = ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.'];
 
   const d = new Date(date);

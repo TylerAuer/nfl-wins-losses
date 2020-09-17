@@ -38,7 +38,9 @@ export default function ScoreboardSection({
       } else if (b.info.isFinished && !a.info.isFinished) {
         return -1;
       } else {
-        return parseInt(b.info.id) - parseInt(a.info.id);
+        const aDate = Date.parse(a.info.date);
+        const bDate = Date.parse(b.info.date);
+        return aDate - bDate;
       }
     }
   });
