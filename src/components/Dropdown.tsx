@@ -42,14 +42,26 @@ export default function Dropdown({ owner, setOwner, rankings }: Props) {
     setOwner(owner);
   };
 
-  return (
-    <menu className="dropdown">
-      <Button
-        className="dropdown__toggle"
-        onClick={onButtonClick}
-        text={owner || 'Owner'}
-      />
-      {isOpen && <div className="dropdown__div">{ownerList}</div>}
-    </menu>
-  );
+  if (isOpen) {
+    return (
+      <menu className="dropdown">
+        <Button
+          className="dropdown__toggle dropdown__toggle--open"
+          onClick={onButtonClick}
+          text="&#10005;"
+        />
+        {isOpen && <div className="dropdown__div">{ownerList}</div>}
+      </menu>
+    );
+  } else {
+    return (
+      <menu className="dropdown">
+        <Button
+          className="dropdown__toggle"
+          onClick={onButtonClick}
+          text={owner || 'Owner'}
+        />
+      </menu>
+    );
+  }
 }
