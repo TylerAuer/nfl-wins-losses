@@ -3,10 +3,10 @@ import { Log } from './Log';
 import { buildTeams } from './onStart/buildTeams';
 import { buildPicks } from './onStart/buildPicks';
 import { buildOwners } from './onStart/buildOwners';
-import sendOwnersByTeam from './routes/sendOwnersByTeam';
-import sendScoreboard from './routes/sendScoreboard';
-import sendRankings from './routes/sendRankings';
-import sendBump from './routes/sendBump';
+import sendOwnersByTeam from './endpoints/sendOwnersByTeam';
+import sendScoreboard from './endpoints/sendScoreboard';
+import sendRankings from './endpoints/sendRankings';
+import sendBump from './endpoints/sendBump';
 
 ////////////////////////////////////////////////////////////////////////////////
 //   CONFIGURE APP   ///////////////////////////////////////////////////////////
@@ -63,7 +63,7 @@ app.get('/', (req: Request, res: Response): void => {
 });
 
 ////////////////////////////////////////////////////////////////////////////////
-//   BACKEND ROUTES   //////////////////////////////////////////////////////////
+//   API ENDPOINTS   ///////////////////////////////////////////////////////////
 
 app.get('/rankings', sendRankings);
 app.get('/scoreboard', sendScoreboard);
