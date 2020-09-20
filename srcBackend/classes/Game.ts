@@ -27,7 +27,7 @@ export interface GameProps {
   homeWinPercentage?: number; // ex: 0.02, 0, 0.29000000000000004
   awayWinPercentage?: number;
 
-  downDistanceText?: string; // "3rd & 11 at ATL 10"
+  downAndDistanceText?: string; // "3rd & 11 at ATL 10"
   whoHasTheBall?: string; // appears to be the team ID as a string
 }
 
