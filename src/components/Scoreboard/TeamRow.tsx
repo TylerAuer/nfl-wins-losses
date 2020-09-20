@@ -10,6 +10,8 @@ interface TeamRowProps {
   team: Team;
   score: string;
   winnerAbbr: string | null;
+  hasPossession: boolean;
+  winPercentage: number;
 }
 
 export default function TeamRow({
@@ -18,15 +20,23 @@ export default function TeamRow({
   team,
   score,
   winnerAbbr,
+  hasPossession,
+  winPercentage,
 }: TeamRowProps) {
   const espnLink = team.info.espnLink;
   const abbr = team.info.abbr;
   const fullName = team.info.fullName;
-  const record = team.record;
   const winsOwner = ownersByTeam[abbr].wins;
   const lossesOwner = ownersByTeam[abbr].losses;
   const isGameOver = !!winnerAbbr; // There is only a game winner if winnerAbbr is not null
   const isWinner = isGameOver && winnerAbbr === abbr;
+
+  const winPercentageHTML =
+    winPercentage >= 0 ? (
+      <div className="team__win-percentage">
+        {Math.round(winPercentage * 1000) / 10}%
+      </div>
+    ) : null;
 
   return (
     <div className="team">
@@ -47,7 +57,7 @@ export default function TeamRow({
           >
             {fullName}
           </a>
-          <span className="team__record">{record}</span>
+          {hasPossession && <div className="team__possession" />}
         </div>
         <div className="team__owners">
           <TeamOwner
@@ -68,13 +78,16 @@ export default function TeamRow({
           />
         </div>
       </div>
-      <div
-        className="team__score"
-        style={{
-          color: isWinner ? 'grey' : undefined,
-        }}
-      >
-        {score}
+      <div className="team__score-and-win-percentage">
+        <div
+          className="team__score"
+          style={{
+            color: isWinner ? 'grey' : undefined,
+          }}
+        >
+          {score}
+        </div>
+        {winPercentageHTML}
       </div>
     </div>
   );

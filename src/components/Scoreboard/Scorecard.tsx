@@ -58,6 +58,8 @@ export default function Scorecard({
         team={game.info.away}
         score={game.info.awayScore}
         winnerAbbr={game.info.winnerAbbr || null}
+        hasPossession={game.info.whoHasTheBall === 'away'}
+        winPercentage={game.info.awayWinPercentage || -1}
       />
 
       <TeamRow
@@ -66,6 +68,8 @@ export default function Scorecard({
         team={game.info.home}
         score={game.info.homeScore}
         winnerAbbr={game.info.winnerAbbr || null}
+        hasPossession={game.info.whoHasTheBall === 'home'}
+        winPercentage={game.info.homeWinPercentage || -1}
       />
 
       <div className="card__footer-row">
