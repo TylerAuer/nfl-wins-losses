@@ -156,10 +156,10 @@ export default function getLiveScores(teams: {
           clock: game.status.displayClock,
           stadium: game.competitions[0].venue.fullName,
           tvNetwork: game.competitions[0].broadcasts[0].names[0],
-          homeWinPercentage: homeWinPercentage,
-          awayWinPercentage: awayWinPercentage,
-          downDistanceText: downAndDistanceText,
-          whoHasTheBall: whoHasTheBall,
+          homeWinPercentage: homeWinPercentage || null,
+          awayWinPercentage: awayWinPercentage || null,
+          downDistanceText: downAndDistanceText || null,
+          whoHasTheBall: whoHasTheBall || null,
         };
 
         // Determine winner if game is finished
