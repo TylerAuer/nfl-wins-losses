@@ -70,7 +70,7 @@ export interface LiveScores {
 
 export default function getLiveScores(teams: {
   [key: string]: Team;
-}): Promise<LiveScores> {
+}): Promise<LiveScores | void> {
   return axios
     .get(apiUrl)
     .then((res) => {
@@ -116,31 +116,6 @@ export default function getLiveScores(teams: {
           teams[homeAbbr].info.ties = parseInt(homeTeamRecord[2]);
         }
 
-        // If the game is in progress, get Down and Distance, Possession, and
-        // win probabilities
-
-        let homeWinPercentage: number;
-        let awayWinPercentage: number;
-        let downAndDistanceText: string;
-        let whoHasTheBall: string;
-
-        if (game.competitions[0].situation) {
-          const situation = game.competitions[0].situation;
-
-          homeWinPercentage = situation.lastPlay.probability.homeWinPercentage;
-          awayWinPercentage = situation.lastPlay.probability.awayWinPercentage;
-
-          downAndDistanceText = situation.downDistanceText;
-
-          // Determine if home or away has possession
-          const possesionTeamId = parseInt(situation.lastPlay.team.id);
-          if (teams[awayAbbr].info.espnId === possesionTeamId) {
-            whoHasTheBall = 'away';
-          } else {
-            whoHasTheBall = 'home';
-          }
-        }
-
         const gameProps: GameProps = {
           id: game.id,
           date: game.date,
@@ -156,11 +131,27 @@ export default function getLiveScores(teams: {
           clock: game.status.displayClock,
           stadium: game.competitions[0].venue.fullName,
           tvNetwork: game.competitions[0].broadcasts[0].names[0],
-          homeWinPercentage: homeWinPercentage || null,
-          awayWinPercentage: awayWinPercentage || null,
-          downDistanceText: downAndDistanceText || null,
-          whoHasTheBall: whoHasTheBall || null,
         };
+
+        if (game.competitions[0].situation) {
+          const situation = game.competitions[0].situation;
+
+          if (situation.lastPlay?.probability) {
+            gameProps.homeWinPercentage =
+              situation.lastPlay.probability.homeWinPercentage;
+            gameProps.awayWinPercentage =
+              situation.lastPlay.probability.awayWinPercentage;
+            gameProps.downAndDistanceText = situation.downDistanceText;
+          }
+
+          // Determine if home or away has possession
+          const possesionTeamId = parseInt(situation.lastPlay.team.id);
+          if (teams[awayAbbr].info.espnId === possesionTeamId) {
+            gameProps.whoHasTheBall = 'away';
+          } else {
+            gameProps.whoHasTheBall = 'home';
+          }
+        }
 
         // Determine winner if game is finished
         if (gameProps.isFinished) {
@@ -175,8 +166,7 @@ export default function getLiveScores(teams: {
 
         liveScores.games.push(new Game(gameProps));
       }
-
       return liveScores;
     })
-    .catch((err) => err);
+    .catch((err) => console.log(err));
 }
