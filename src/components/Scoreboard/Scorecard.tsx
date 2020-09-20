@@ -3,6 +3,8 @@ import { Game } from '../../../srcBackend/classes/Game';
 import { OwnersByTeam } from '../../interfaces';
 import TeamRow from './TeamRow';
 import GameTime from './GameTime';
+import DownAndDistance from './DownAndDistance';
+import Gambling from './Gambling';
 import * as CSS from 'csstype';
 import checkForOwnerInGame from '../../functions/checkForOwnerInGame';
 import './Scorecard.scss';
@@ -56,6 +58,8 @@ export default function Scorecard({
         team={game.info.away}
         score={game.info.awayScore}
         winnerAbbr={game.info.winnerAbbr || null}
+        hasPossession={game.info.whoHasTheBall === 'away'}
+        winPercentage={game.info.awayWinPercentage || -1}
       />
 
       <TeamRow
@@ -64,14 +68,14 @@ export default function Scorecard({
         team={game.info.home}
         score={game.info.homeScore}
         winnerAbbr={game.info.winnerAbbr || null}
+        hasPossession={game.info.whoHasTheBall === 'home'}
+        winPercentage={game.info.homeWinPercentage || -1}
       />
 
       <div className="card__footer-row">
-        <div className="card__gambling">
-          <div className="card__spread">{game.info.line}</div>
-          <div className="card__total">
-            {game.info.total ? `O/U: ${game.info.total}` : ''}
-          </div>
+        <div className="card__gambing-or-down-and-distance">
+          <Gambling game={game} />
+          <DownAndDistance game={game} />
         </div>
         <div className="card__status">
           <GameTime game={game} />

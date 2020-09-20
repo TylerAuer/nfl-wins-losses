@@ -16,11 +16,6 @@ export interface GameProps {
   line: string;
   total: number;
 
-  // TODO: Not sure if the API provides this information for live games
-  // possession: Possession;
-  // down: number;
-  // distance: number;
-
   quarter: number;
   clock: string;
 
@@ -28,6 +23,12 @@ export interface GameProps {
   tvNetwork: string;
 
   winnerAbbr?: string; // team abbreviation
+
+  homeWinPercentage?: number; // ex: 0.02, 0, 0.29000000000000004
+  awayWinPercentage?: number;
+
+  downAndDistanceText?: string; // "3rd & 11 at ATL 10"
+  whoHasTheBall?: string; // appears to be the team ID as a string
 }
 
 export class Game {
