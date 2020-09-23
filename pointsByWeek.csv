@@ -1,11 +1,11 @@
-Owner   ,Pre ,Wk1
-Jamie   ,0   ,2
-Howard  ,0   ,3
-Whitney ,0   ,3
-Jessica ,0   ,3
-Rachel  ,0   ,4
-Amy     ,0   ,3
-Susan   ,0   ,2
-Barbara ,0   ,2
-Tillman ,0   ,3
-Tyler   ,0   ,4
+Owner,Pre,Wk1,Wk2
+Tyler,0,4,9
+Rachel,0,4,9
+Tillman,0,3,6
+Jessica,0,3,6
+Jamie,0,2,6
+Amy,0,3,6
+Whitney,0,3,5
+Howard,0,3,5
+Barbara,0,2,5
+Susan,0,2,4
