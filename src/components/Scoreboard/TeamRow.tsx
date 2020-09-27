@@ -31,6 +31,10 @@ export default function TeamRow({
   const isGameOver = !!winnerAbbr; // There is only a game winner if winnerAbbr is not null
   const isWinner = isGameOver && winnerAbbr === abbr;
 
+  if (abbr === 'CIN') {
+    console.log(isGameOver, isWinner);
+  }
+
   const winPercentageHTML =
     winPercentage >= 0 ? (
       <div className="team__win-percentage">
@@ -69,7 +73,7 @@ export default function TeamRow({
             ownerShortName={winsOwner?.info.shortName}
           />
           <TeamOwner
-            earnedPoints={isGameOver && !isWinner}
+            earnedPoints={isGameOver && !isWinner && winnerAbbr !== 'tie'}
             isUserSelectedOwner={
               lossesOwner?.info.shortName === userSelectedOwner
             }
