@@ -155,11 +155,23 @@ export default function getLiveScores(teams: {
 
         // Determine winner if game is finished
         if (gameProps.isFinished) {
+          console.log(' ');
+          console.log(gameProps.home, gameProps.away);
+          console.log(gameProps.homeScore, gameProps.awayScore);
+          console.log(typeof gameProps.homeScore, typeof gameProps.awayScore);
+          console.log(
+            parseInt(gameProps.homeScore) > parseInt(gameProps.awayScore)
+          );
+
           if (gameProps.homeScore === gameProps.awayScore) {
             gameProps.winnerAbbr = 'tie';
-          } else if (gameProps.homeScore > gameProps.awayScore) {
+          } else if (
+            parseInt(gameProps.homeScore) > parseInt(gameProps.awayScore)
+          ) {
             gameProps.winnerAbbr = gameProps.home.info.abbr;
-          } else if (gameProps.awayScore > gameProps.homeScore) {
+          } else if (
+            parseInt(gameProps.awayScore) > parseInt(gameProps.homeScore)
+          ) {
             gameProps.winnerAbbr = gameProps.away.info.abbr;
           }
         }
