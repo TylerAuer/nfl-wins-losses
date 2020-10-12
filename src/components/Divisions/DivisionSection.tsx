@@ -1,14 +1,14 @@
 import React from 'react';
 import { OwnersByTeam, TeamsByDivision } from '../../interfaces';
 import DivisionRooting from './DivisionRooting';
-import './RootingSection.scss';
+import './DivisionSection.scss';
 
 interface RootingSectionProps {
   ownersByTeam: OwnersByTeam;
   loading: boolean;
 }
 
-export default function RootingSection({
+export default function DivisionSection({
   ownersByTeam,
   loading,
 }: RootingSectionProps) {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from './Header';
 import ScoreboardSection from './Scoreboard/ScoreboardSection';
 import RankingsSection from './Rankings/RankingsSection';
-import RootingSection from './Rooting/RootingSection';
+import DivisionSection from './Divisions/DivisionSection';
 import BumpChartSection from './BumpChart/BumpChartSection';
 import useRankings from '../hooks/useRankings';
 import useOwnersByTeam from '../hooks/useOwnersByTeam';
@@ -30,7 +30,7 @@ function App() {
         rankings={rankings}
         userSelectedOwner={userSelectedOwner}
       />
-      <RootingSection ownersByTeam={ownersByTeam} loading={oLoading} />
+      <DivisionSection ownersByTeam={ownersByTeam} loading={oLoading} />
       <BumpChartSection />
     </div>
   );
