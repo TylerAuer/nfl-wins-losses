@@ -155,14 +155,6 @@ export default function getLiveScores(teams: {
 
         // Determine winner if game is finished
         if (gameProps.isFinished) {
-          console.log(' ');
-          console.log(gameProps.home, gameProps.away);
-          console.log(gameProps.homeScore, gameProps.awayScore);
-          console.log(typeof gameProps.homeScore, typeof gameProps.awayScore);
-          console.log(
-            parseInt(gameProps.homeScore) > parseInt(gameProps.awayScore)
-          );
-
           if (gameProps.homeScore === gameProps.awayScore) {
             gameProps.winnerAbbr = 'tie';
           } else if (
