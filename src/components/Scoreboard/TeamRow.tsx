@@ -29,11 +29,7 @@ export default function TeamRow({
   const winsOwner = ownersByTeam[abbr].wins;
   const lossesOwner = ownersByTeam[abbr].losses;
   const isGameOver = !!winnerAbbr; // There is only a game winner if winnerAbbr is not null
-  const isWinner = isGameOver && winnerAbbr === abbr;
-
-  if (abbr === 'CIN') {
-    console.log(isGameOver, isWinner);
-  }
+  const isWinner = winnerAbbr === abbr;
 
   const winPercentageHTML =
     winPercentage >= 0 ? (
@@ -56,7 +52,7 @@ export default function TeamRow({
           <a
             href={espnLink}
             style={{
-              color: isWinner ? 'grey' : undefined,
+              color: isGameOver && !isWinner ? 'grey' : undefined,
             }}
           >
             {fullName}
@@ -86,7 +82,7 @@ export default function TeamRow({
         <div
           className="team__score"
           style={{
-            color: isWinner ? 'grey' : undefined,
+            color: isGameOver && !isWinner ? 'grey' : undefined,
           }}
         >
           {score}
