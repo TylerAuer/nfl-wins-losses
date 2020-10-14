@@ -49,6 +49,9 @@ const sendBump = (req: Request, res: Response): void => {
         }
       });
 
+      if (ownerRow.length > 5) {
+        delete rankHistory.Pre;
+      }
       bumpData[ownerShortName] = rankHistory;
     });
 

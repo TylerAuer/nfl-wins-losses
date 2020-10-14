@@ -7,6 +7,7 @@ export default async function drawBumpChart(data, target) {
 
   const owners = Object.keys(data);
   const listOfWeeks = Object.keys(data[owners[0]]);
+  console.log(listOfWeeks);
 
   // fraction of bar that should be horizontal
   let widthOfHorizontalSegments;
@@ -148,6 +149,10 @@ export default async function drawBumpChart(data, target) {
     .attr('alignment-baseline', 'middle');
 
   // Add Name Labels to right side
+  //
+  // After week 4, the preseason rankings are no longer included in the
+  // bump JSON data from the server. So the label needs to come from the
+  // "Wk 1" key
   svg
     .selectAll('right-labels')
     .data(Object.entries(data))
@@ -155,8 +160,20 @@ export default async function drawBumpChart(data, target) {
     .append('text')
     .attr('class', `bump__label`)
     .attr('color', 'black')
-    .attr('x', x('Pre') + x.bandwidth() - xClip / 2)
-    .attr('y', (d) => y(d[1].Pre))
+    .attr('x', (d) => {
+      if (d[1].Pre) {
+        return x('Pre') + x.bandwidth() - xClip / 2;
+      } else {
+        return x('Wk 1') + x.bandwidth() - xClip / 2;
+      }
+    })
+    .attr('y', (d) => {
+      if (d[1].Pre) {
+        return y(d[1].Pre);
+      } else {
+        return y(d[1]['Wk 1']);
+      }
+    })
     .attr('dy', '-12')
     .text((d) => `${d[0]}`)
     .attr('font-size', '12px')
